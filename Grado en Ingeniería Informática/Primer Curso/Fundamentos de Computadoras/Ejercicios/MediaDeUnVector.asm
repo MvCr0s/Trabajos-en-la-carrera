@@ -1,0 +1,16 @@
+.data
+A: .word 1, 2, 14, 18, 26, 23, 35, 65 # Declaraci�n del vector
+.text
+main: add $s1, $zero, $0 # Inicializa el acumulador
+la $s0, A # Carga la direcci�n del vector en $s0
+add $s2, $zero, $0 # Inicializa �ndice
+Bucle: sll $t0, $s2, 2 # Multiplica �ndice por 4
+add $t1, $t0, $s0 # y se lo suma a la direcci�n del vector
+lw $t2, 0($t1) # Carga componente
+add $s1, $s1, $t2 # Suma componente
+slti $t3, $s2, 8 # Analiza si ha terminado
+addi $s2, $s2, 1 # Incrementa �ndice
+bne $t3, $zero, Bucle # Si no ha terminado vuelve a Bucle
+srl $s3, $s1, 3 # Divide por 8
+li $v0, 10 # Fin del programa
+syscall
