@@ -8,9 +8,9 @@
 El repositorio está organizado en carpetas, una por cada año de mi carrera.  
 Al hacer clic en cualquiera de ellas te llevará a explorar los proyectos correspondientes:
 
-- [Curso 1](./Curso1)  
-- [Curso 2](./Curso2)  
-- [Curso 3](./Curso3)  
+- [Primer Curso](./PrimerCurso)  
+- [Segundo Curso](./Curso2)  
+- [Tercer Curso](./Curso3)  
 
 ---
 
