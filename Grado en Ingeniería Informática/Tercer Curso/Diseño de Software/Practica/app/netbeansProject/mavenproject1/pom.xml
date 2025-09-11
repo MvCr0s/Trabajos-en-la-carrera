@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" 
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  
+  <!-- Cambiado para evitar conflictos con el proyecto original bloqueado -->
+  <groupId>es.uva.equipo11</groupId>
+  <artifactId>proyecto-sonar-prueba</artifactId>
+  <version>1.0</version>
+  <packaging>jar</packaging>
+  
+  <properties>
+      <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+      <maven.compiler.source>11</maven.compiler.source>
+      <maven.compiler.target>11</maven.compiler.target>
+      <exec.mainClass>uva.dis.mavenproject1.Main</exec.mainClass>
+      
+      <!-- Opcional, no se usa si pasas estos parámetros por línea de comandos -->
+      <sonar.host.url>https://sonarqube.inf.uva.es</sonar.host.url>
+      <sonar.projectKey>es.uva.inf.ds24-25-11-test1</sonar.projectKey>
+      <sonar.exclusions>**/Vista*.java</sonar.exclusions>
+  </properties>
+  
+  <dependencies>
+      <dependency>
+          <groupId>org.apache.derby</groupId>
+          <artifactId>derbyclient</artifactId>
+          <version>10.14.2.0</version>
+          <scope>runtime</scope>
+      </dependency>
+      <dependency>
+          <groupId>javax.json</groupId>
+          <artifactId>javax.json-api</artifactId>
+          <version>1.1.4</version>
+      </dependency>
+      <dependency>
+          <groupId>org.junit.jupiter</groupId>
+          <artifactId>junit-jupiter</artifactId>
+          <version>5.9.3</version>
+          <scope>test</scope>
+      </dependency>
+      <dependency>
+          <groupId>org.glassfish</groupId>
+          <artifactId>javax.json</artifactId>
+          <version>1.1</version>
+          <scope>runtime</scope>
+      </dependency>
+      <dependency>
+          <groupId>org.netbeans.external</groupId>
+          <artifactId>AbsoluteLayout</artifactId>
+          <version>RELEASE180</version>
+      </dependency>
+      <dependency>
+          <groupId>javax</groupId>
+          <artifactId>javaee-web-api</artifactId>
+          <version>7.0</version>
+      </dependency>
+  </dependencies>
+  
+  <build>
+      <plugins>
+          <plugin>
+              <groupId>org.sonarsource.scanner.maven</groupId>
+              <artifactId>sonar-maven-plugin</artifactId>
+              <version>3.9.1.2184</version>
+          </plugin>
+      </plugins>
+  </build>
+</project>
