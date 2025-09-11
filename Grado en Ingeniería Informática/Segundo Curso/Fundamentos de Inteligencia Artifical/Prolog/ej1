@@ -1,0 +1,9 @@
+% Hechos
+asignatura(alg, matematicas).
+asignatura(ia, informatica).
+enseña(juan, alg).
+enseña(maria, ia).
+inteligente(Persona) :- enseña(Persona, _).
+
+% Reglas
+inteligente(informatico) :- enseña(X, _) , asignatura(_, informatica), enseña(Y, alg), enseña(Z, ia), esposo(Z, Y).
