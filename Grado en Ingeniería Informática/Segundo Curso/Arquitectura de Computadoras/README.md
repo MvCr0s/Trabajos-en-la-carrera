@@ -1,4 +1,4 @@
-# 🖥️ Arquitectura de Computadores
+# 🖥️ Arquitectura de Computadoras
 
 ## 📌 Introducción
 Asignatura dedicada al estudio del **hardware a bajo nivel**, la organización interna del procesador y su relación con el rendimiento.  
