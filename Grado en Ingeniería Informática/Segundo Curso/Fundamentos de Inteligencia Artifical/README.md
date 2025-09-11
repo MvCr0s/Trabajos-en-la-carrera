@@ -10,26 +10,26 @@ En los laboratorios se trabajó principalmente con **Prolog**, lenguaje lógico 
 
 ### 📖 Representación del conocimiento
 - Lógica proposicional y de predicados.
-- Forma clausal y skolemización:contentReference[oaicite:10]{index=10}.
+- Forma clausal y skolemización.
 - Sistemas de producción (reglas y hechos).
-- Representación de problemas como espacio de estados:contentReference[oaicite:11]{index=11}.
+- Representación de problemas como espacio de estados.
 
 ### 🔍 Búsqueda en espacios de estados
-- Búsqueda ciega: primero en anchura, primero en profundidad:contentReference[oaicite:12]{index=12}.
+- Búsqueda ciega: primero en anchura, primero en profundidad.
 - Estrategias de profundización iterativa y coste uniforme.
-- Búsqueda heurística:contentReference[oaicite:13]{index=13}:
+- Búsqueda heurística:contentReference
   - Algoritmo **Primero el mejor**.
   - Algoritmo **A***.
-  - Propiedades de heurísticas: admisibilidad y monotonía:contentReference[oaicite:14]{index=14}.
+  - Propiedades de heurísticas: admisibilidad y monotonía:contentReference.
 
 ### 🎮 Juegos y adversarios
-- Algoritmo **MINIMAX**:contentReference[oaicite:15]{index=15}.
-- **Poda Alfa-Beta**: optimización del minimax:contentReference[oaicite:16]{index=16}.
+- Algoritmo **MINIMAX**:contentReference.
+- **Poda Alfa-Beta**: optimización del minimax:contentReference.
 - Concepto de horizonte y heurísticas en juegos.
 
 ### 🧑‍💻 Laboratorios en Prolog
-- Representación de hechos y reglas lógicas:contentReference[oaicite:17]{index=17}.
-- Variables anónimas y operadores:contentReference[oaicite:18]{index=18}.
+- Representación de hechos y reglas lógicas:contentReference.
+- Variables anónimas y operadores:contentReference.
 - Ejercicios prácticos:
   - Definición de relaciones familiares y consultas (padres, abuelos, etc.).
   - Modelado de problemas como planificadores (viajes, comidas, etc.).
