@@ -21,7 +21,7 @@ Incluye una parte práctica con **programación en C** y uso de **comandos UNIX*
 - Cadenas de caracteres y librerías estándar.
 - Gestión dinámica de memoria (`malloc`, `calloc`, `realloc`, `free`).
 - Ficheros: apertura, lectura/escritura, cierre.
-- Descriptores de archivo y llamadas al sistema (`open`, `read`, `write`, `close`):contentReference[oaicite:12]{index=12}.
+- Descriptores de archivo y llamadas al sistema (`open`, `read`, `write`, `close`).
 
 ### 👥 Procesos e hilos:contentReference
 - Creación de procesos (`fork`, `exec`).
