@@ -8,14 +8,14 @@ Incluye una parte práctica con **programación en C** y uso de **comandos UNIX*
 
 ## 🔹 Contenidos principales
 
-### 📖 Conceptos básicos:contentReference[oaicite:9]{index=9}
+### 📖 Conceptos básicos:contentReference
 - Definición de sistema operativo: interfaz entre hardware y usuario.
 - Recursos gestionados: CPU, memoria, ficheros, dispositivos de E/S.
 - Servicios: sincronización, seguridad, comunicación, protección.
 - Evolución: sistemas por lotes, multiprogramados y de tiempo compartido.
 - Interrupciones, trampas y modo dual (usuario/núcleo).
 
-### ⚙️ Lenguaje C (prácticas):contentReference[oaicite:10]{index=10}:contentReference[oaicite:11]{index=11}
+### ⚙️ Lenguaje C (prácticas):contentReference
 - Tipos de datos, variables, operadores, estructuras de control.
 - Arrays, `struct`, punteros y funciones.
 - Cadenas de caracteres y librerías estándar.
@@ -23,25 +23,25 @@ Incluye una parte práctica con **programación en C** y uso de **comandos UNIX*
 - Ficheros: apertura, lectura/escritura, cierre.
 - Descriptores de archivo y llamadas al sistema (`open`, `read`, `write`, `close`):contentReference[oaicite:12]{index=12}.
 
-### 👥 Procesos e hilos:contentReference[oaicite:13]{index=13}:contentReference[oaicite:14]{index=14}
+### 👥 Procesos e hilos:contentReference
 - Creación de procesos (`fork`, `exec`).
 - Estados de procesos y planificación.
 - Procesos pesados vs. hilos ligeros.
 - Hilos con **pthreads** (`pthread_create`, `pthread_join`, `pthread_exit`).
 - Sincronización con **semáforos POSIX** (`sem_wait`, `sem_post`).
 
-### 📅 Planificación de CPU:contentReference[oaicite:15]{index=15}
+### 📅 Planificación de CPU:contentReference
 - Algoritmos: FCFS, SJF, SRTF, Round Robin, prioridad.
 - Planificación multinivel y multicolas con realimentación.
 - Planificación en sistemas multiprocesador.
 - Planificación en tiempo real: EDF, RMS.
 
-### 🔒 Concurrencia y bloqueos:contentReference[oaicite:16]{index=16}
+### 🔒 Concurrencia y bloqueos:contentReference
 - Condiciones para el bloqueo mutuo (*deadlock*).
 - Algoritmo del banquero.
 - Detección y prevención de interbloqueos.
 
-### 💻 Comandos UNIX:contentReference[oaicite:17]{index=17}
+### 💻 Comandos UNIX:contentReference
 - Entrada/salida estándar, redirección y tuberías.
 - Comandos avanzados: `grep`, `sort`, `uniq`, `wc`, `cut`, `tr`, `paste`.
 - Uso de `scp` para transferir ficheros.
