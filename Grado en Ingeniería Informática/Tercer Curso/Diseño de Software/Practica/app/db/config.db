@@ -1,0 +1,3 @@
+url=jdbc:derby://localhost:1527/acmeur
+user=usuario
+password=2good2throw_2025
