@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Supermercado El Ahorro</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="{{ url_for('static', filename='estilo2.css') }}" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet">
+</head>
+<body class="blue lighten-5">
+
+  <!-- Cabecera -->
+  <nav class="blue darken-3">
+    <div class="nav-wrapper container">
+      <a href="/menu" class="brand-logo">El Ahorro</a>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <li><a href="/productos">Productos</a></li>
+        <li><a href="/carrito">Carrito</a></li>
+        <li><a href="/pedidos">Mis Pedidos</a></li>
+        <li><a href="/logout">Cerrar Sesión</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Cuerpo principal -->
+  <div class="container center-align" style="margin-top: 60px;">
+    <h4>Bienvenido a Supermercado El Ahorro, {{ username }} 👋</h4>
+    <p class="flow-text grey-text text-darken-2">
+      Descubre nuestra selección de productos frescos, carnes, bebidas y mucho más.
+      ¡Calidad garantizada al mejor precio!
+    </p>
+
+    <div class="section">
+      <a href="/productos" class="btn-large blue darken-2 waves-effect waves-light">Explorar Productos</a>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="page-footer blue darken-3">
+    <div class="container center-align white-text">
+      © 2025 Supermercado El Ahorro — Todos los derechos reservados.
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+</body>
+</html>
+

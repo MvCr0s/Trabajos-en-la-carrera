@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="{{ url_for('static', filename='estilo.css') }}" rel="stylesheet" type="text/css"/>
+    <title>Formulario de Registro</title>
+</head>
+<body>
+    <main>
+        <section class="form-container">
+            <h2>Formulario de Registro</h2>
+            <form id="register-form" action="{{ url_for('registro.registro') }}" method="post">
+                <div class="input-group">
+                    <input type="text" name="username" placeholder="Nombre de usuario" required id="register-user">
+                </div>
+
+                <div class="input-group">
+                    <input type="email" name="email" placeholder="Correo electrónico" required id="register-email">
+                </div>
+
+                <div class="input-group">
+                    <input type="password" name="password" placeholder="Contraseña" required id="register-pass">
+                </div>
+
+                <div class="input-group">
+                    <input type="password" name="confirm" placeholder="Confirmar contraseña" required id="register-confirm">
+                </div>
+
+                <div class="small-link">
+                    ¿Olvidaste tu contraseña? <a href="#">Haz click aquí</a>
+                </div>
+
+                <div class="btn-group">
+                    <button type="submit" class="btn btn-register">Registrar</button>
+                    <button type="button" class="btn btn-login" onclick="window.location.href='{{ url_for('inicio.mostrar_inicio') }}'">Login</button>
+                </div>
+            </form>
+            <div id="register-res"></div>
+        </section>
+    </main>
+
+    <script>
+        document.getElementById("register-form").addEventListener("submit", function(e) {
+            e.preventDefault();
+
+            const username = document.getElementById("register-user").value;
+            const email = document.getElementById("register-email").value;
+            const password = document.getElementById("register-pass").value;
+            const confirm = document.getElementById("register-confirm").value;
+
+            if (password !== confirm) {
+                document.getElementById("register-res").textContent = "Las contraseñas no coinciden.";
+                return;
+            }
+
+            fetch("/api/registro", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ username, password, email })
+            })
+            .then(res => res.json())
+            .then(data => {
+                if (data.mensaje) {
+                    window.location.href = "/menu";
+                } else {
+                    document.getElementById("register-res").textContent = data.error || "Error desconocido";
+                }
+            });
+        });
+    </script>
+</body>
+</html>
+

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Mi Carrito</title>
+    <link href="{{ url_for('static', filename='estilo2.css') }}" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet">
+</head>
+
+<body class="blue lighten-5">
+    <main class="container">
+        <h4 class="center-align">Mi Carrito</h4>
+        <ul id="lista-carrito" class="collection z-depth-1"></ul>
+
+        <div class="center-align">
+            <button class="btn red lighten-1" onclick="vaciarCarrito()">Vaciar Carrito</button>
+            <button class="btn green lighten-1" onclick="realizarCompra()">Comprar</button>
+            <button class="btn grey lighten-1" onclick="window.location.href='/menu'">Volver al menú</button>
+        </div>
+    </main>
+
+    <script>
+        function cargarCarrito() {
+            fetch("/api/carrito")
+                .then(res => res.json())
+                .then(items => {
+                    const ul = document.getElementById("lista-carrito");
+                    ul.innerHTML = "";
+
+                    if (items.length === 0) {
+                        ul.innerHTML = "<li class='collection-item'>El carrito está vacío.</li>";
+                        return;
+                    }
+
+                    items.forEach(p => {
+                        const nombre = p.nombre ?? "nombre";
+                        const precio = parseFloat(p.precio) || 0;
+                        const cantidad = parseInt(p.cantidad) || 0;
+                        const total = (precio * cantidad).toFixed(2);
+
+                        const li = document.createElement("li");
+                        li.className = "collection-item";
+                        li.innerHTML = `<b>${nombre}</b> - ${precio} € × ${cantidad} = ${total} €`;
+                        ul.appendChild(li);
+                    });
+                })
+                .catch(err => {
+                    console.error("Error al cargar el carrito:", err);
+                });
+        }
+
+
+        function vaciarCarrito() {
+            fetch("/api/carrito/vaciar", { method: "DELETE" })
+                .then(res => res.json())
+                .then(resp => {
+                    alert(resp.mensaje);
+                    cargarCarrito();
+                });
+        }
+
+        function realizarCompra() {
+            if (!confirm("¿Deseas finalizar tu compra?")) return;
+
+            fetch("/api/checkout", {
+                method: "POST"
+            })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.error) {
+                        alert("Error: " + data.error);
+                    } else {
+                        alert(data.mensaje + " (ID del pedido: " + data.pedido_id + ")");
+                        window.location.href = "/pedidos";  
+                    }
+                })
+
+                .catch(err => {
+                    console.error("Error en la compra:", err);
+                    alert("Error al procesar la compra.");
+                });
+        }
+
+        cargarCarrito();
+    </script>
+</body>
+
+</html>

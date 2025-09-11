@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="../static/estilo.css" rel="stylesheet" type="text/css"/>
+    <title>Prueba de API de Autenticación</title>
+</head>
+<body>
+    <main>
+        <section class="login-container">
+            <h2>INICIO DE SESIÓN</h2>
+            <p>¡Bienvenido de nuevo a la Tienda Online!</p>
+
+            <form id="login-form" action="{{ url_for('inicio.login') }}" method="post">
+
+                <!-- Línea 1: Usuario -->
+                <div class="form-line">
+                    <label for="login-user">Usuario:</label>
+                    <input type="text" id="login-user" name="username" value="usuario1" required placeholder="Nombre de usuario o Email">
+                </div>
+
+                <!-- Línea 2: Contraseña -->
+                <div class="form-line">
+                    <label for="login-pass">Contraseña:</label>
+                    <input type="password" id="login-pass" name="password" value="1234" required placeholder="Contraseña">
+                </div>
+
+                <!-- Línea 3: Botón Iniciar Sesión -->
+                <div class="form-line">
+                    <button type="submit">Iniciar Sesión</button>
+                </div>
+            </form>
+
+            <div id="login-res"></div>
+
+            <!-- Línea 4: Crear Cuenta -->
+            <div class="crearCuenta">
+                <p>¿No tienes cuenta? ¡Regístrate!</p>
+                <button onclick='window.location.href="{{ url_for("registro.mostrar_registro") }}"'>Crear Cuenta</button>
+            </div>
+        </section>
+    </main>
+
+<script>
+document.getElementById("login-form").addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    fetch("/inicio", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+            username: document.getElementById("login-user").value,
+            password: document.getElementById("login-pass").value
+        })
+    })
+    .then(res => res.json())
+    .then(data => {
+        if (data.mensaje) {
+            // Redirige al menú si login es exitoso
+            window.location.href = "/menu";
+        } else {
+            document.getElementById("login-res").textContent = data.error || "Error desconocido";
+        }
+    });
+});
+</script>
+
+</body>
+</html>
+

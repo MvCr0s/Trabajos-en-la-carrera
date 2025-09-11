@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Checkout</title>
+    <link href="{{ url_for('static', filename='estilo.css') }}" rel="stylesheet" />
+</head>
+<body>
+    <main>
+        <h2>Confirmar Compra</h2>
+        <button id="btn-compra">Procesar Compra</button>
+        <p id="resultado"></p>
+        <button onclick="window.location.href='/menu'">Volver al menú</button>
+    </main>
+
+    <script>
+        document.getElementById("btn-compra").addEventListener("click", () => {
+            document.getElementById("resultado").textContent = "Procesando pago...";
+            fetch("/api/checkout", {
+                method: "POST"
+            })
+            .then(res => res.json())
+            .then(data => {
+                if (data.pedido_id) {
+                    document.getElementById("resultado").textContent =
+                        `Compra realizada. Pedido #${data.pedido_id}`;
+                } else {
+                    document.getElementById("resultado").textContent =
+                        data.error || "Error durante el proceso.";
+                }
+            });
+        });
+    </script>
+</body>
+</html>
+

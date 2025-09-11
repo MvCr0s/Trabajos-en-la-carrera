@@ -1,0 +1,104 @@
+/* Fondo general */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
+    background-color: #e3f2fd; /* azul mate claro */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* Contenedor general para login y registro */
+.login-container,
+.form-container {
+    background-color: #ffffff;
+    padding: 40px;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+}
+
+/* Título */
+h2 {
+    margin-bottom: 10px;
+    font-size: 24px;
+    color: #333;
+}
+
+/* Párrafos introductorios */
+p {
+    margin-bottom: 20px;
+    color: #555;
+}
+
+/* Línea de formulario */
+.form-line,
+.input-group {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+/* Etiquetas y campos */
+label {
+    display: block;
+    font-weight: 500;
+    margin-bottom: 6px;
+    color: #444;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="email"] {
+    width: 100%;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+    box-sizing: border-box;
+}
+
+/* Botones generales */
+button,
+.btn {
+    padding: 10px 20px;
+    background-color: #4285f4;
+    color: #fff;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    text-decoration: none;
+    display: inline-block;
+}
+
+button:hover,
+.btn:hover {
+    background-color: #3367d6;
+}
+
+/* Sección de registro y enlaces */
+.crearCuenta,
+.small-link {
+    margin-top: 20px;
+    font-size: 14px;
+    color: #555;
+}
+
+/* Grupo de botones */
+.btn-group {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+/* Iconos dentro de input-group (si los usas con font awesome) */
+.input-group i {
+    margin-right: 8px;
+    color: #888;
+}
+

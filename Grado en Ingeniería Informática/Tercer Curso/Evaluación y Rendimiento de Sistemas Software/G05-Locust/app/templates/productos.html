@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Productos Disponibles</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Tu CSS personalizado -->
+    <link href="{{ url_for('static', filename='estilo2.css') }}" rel="stylesheet" />
+    <!-- Framework Materialize para mejor aspecto -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet">
+</head>
+
+<body class="blue lighten-5">
+
+    <main class="container">
+        <h4 class="center-align">Productos Disponibles</h4>
+        <div class="input-field">
+            <select id="filtro-categoria" onchange="filtrarPorCategoria()">
+                <option value="" selected>Todas las categorías</option>
+                <option value="Pizzas">Pizzas</option>
+                <option value="Hamburguesas">Hamburguesas</option>
+                <option value="Ensaladas">Ensaladas</option>
+                <option value="Postres">Postres</option>
+                <option value="Bebidas">Bebidas</option>
+            </select>
+            <label>Categoría</label>
+        </div>
+
+
+        <ul id="lista-productos" class="collection"></ul>
+
+        <section id="detalle-producto" class="card" style="display:none; padding: 20px;">
+            <h5>Detalle del producto</h5>
+            <p><strong>Nombre:</strong> <span id="detalle-nombre"></span></p>
+            <p><strong>Descripción:</strong> <span id="detalle-descripcion"></span></p>
+            <p><strong>Precio:</strong> <span id="detalle-precio"></span> €</p>
+            <p><strong>Stock:</strong> <span id="detalle-stock"></span></p>
+            <button class="btn blue darken-2" onclick="cerrarDetalle()">Cerrar</button>
+            <a id="btn-editar-producto" class="btn orange darken-2">Editar Producto</a>
+        </section>
+
+        <div class="center-align" style="margin-top: 20px;">
+            <button class="btn grey lighten-1" onclick="window.location.href='/menu'">Volver al menú</button>
+        </div>
+    </main>
+
+    <!-- Scripts Materialize + jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+    <script>
+        fetch("/api/productos")
+            .then(res => res.json())
+            .then(productos => {
+                console.log("Productos recibidos:", productos);
+                const ul = document.getElementById("lista-productos");
+                ul.innerHTML = "";
+
+                productos.forEach(prod => {
+                    const li = document.createElement("li");
+                    li.className = "collection-item";
+                    li.innerHTML = `
+    <div>
+        <b>${prod.nombre}</b> - ${prod.precio} €
+        <a class="secondary-content btn-small blue" onclick="verDetalle(${prod.id})">Ver Detalle</a>
+        <a class="secondary-content btn-small green" style="margin-right: 10px;" onclick="agregarAlCarrito(${prod.id})">Añadir</a>
+    </div>`;
+                    ul.appendChild(li);
+                });
+
+            })
+            .catch(err => {
+                console.error("Error al cargar productos:", err);
+            });
+
+        let productoSeleccionadoId = null;
+
+        function verDetalle(id) {
+            productoSeleccionadoId = id;
+
+            fetch(`/api/productos/${id}`)
+                .then(res => res.json())
+                .then(data => {
+                    console.log("Raw data:", data);
+                    const producto = data[0];
+                    console.log("Producto recibido (debug):", producto);
+
+                    document.getElementById("detalle-nombre").textContent = producto.nombre;
+                    document.getElementById("detalle-descripcion").textContent = producto.descripcion;
+                    document.getElementById("detalle-precio").textContent = producto.precio;
+                    document.getElementById("detalle-stock").textContent = producto.stock;
+
+                    document.getElementById("detalle-producto").style.display = "block";
+                });
+        }
+
+
+        document.getElementById("btn-editar-producto").addEventListener("click", function () {
+            if (productoSeleccionadoId !== null) {
+                window.location.href = `/editarProducto?id=${productoSeleccionadoId}`;
+            }
+        });
+
+        function cerrarDetalle() {
+            document.getElementById("detalle-producto").style.display = "none";
+        }
+
+        function agregarAlCarrito(id) {
+            fetch("/api/carrito/agregar", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ producto_id: id, cantidad: 1 })
+            })
+                .then(res => res.json())
+                .then(resp => {
+                    alert(resp.mensaje);
+                })
+                .catch(err => {
+                    console.error("Error al añadir al carrito:", err);
+                });
+        }
+
+
+        function filtrarPorCategoria() {
+            const categoria = document.getElementById("filtro-categoria").value;
+            const url = categoria ? `/productos?categoria=${encodeURIComponent(categoria)}` : "/productos";
+
+            fetch(url)
+                .then(res => res.json())
+                .then(productos => {
+                    const ul = document.getElementById("lista-productos");
+                    ul.innerHTML = "";
+
+                    productos.forEach(prod => {
+                        const li = document.createElement("li");
+                        li.className = "collection-item";
+                        li.innerHTML = `
+                    <div>
+                        <b>${prod.nombre}</b> - ${prod.precio} €
+                        <a class="secondary-content btn-small blue" onclick="verDetalle(${prod.id})">Ver Detalle</a>
+                        <a class="secondary-content btn-small green" style="margin-right: 10px;" onclick="agregarAlCarrito(${prod.id})">Añadir</a>
+                    </div>`;
+                        ul.appendChild(li);
+                    });
+                })
+                .catch(err => {
+                    console.error("Error al filtrar productos:", err);
+                });
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            const elems = document.querySelectorAll('select');
+            M.FormSelect.init(elems);
+        });
+
+    </script>
+
+
+
+
+</body>
+
+</html>

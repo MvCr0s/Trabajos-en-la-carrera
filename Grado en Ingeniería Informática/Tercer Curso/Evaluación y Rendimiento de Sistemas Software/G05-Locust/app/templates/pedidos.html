@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Mis Pedidos</title>
+  <link href="{{ url_for('static', filename='estilo2.css') }}" rel="stylesheet" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet">
+</head>
+
+<body class="blue lighten-5">
+  <main class="container">
+    <h4 class="center-align">Mis Pedidos</h4>
+    <ul id="lista-pedidos" class="collection z-depth-1"></ul>
+
+    <section id="detalle-pedido" class="card" style="display:none; padding: 20px; margin-top: 20px;">
+      <h5>Detalle del Pedido</h5>
+      <p><strong>Fecha:</strong> <span id="detalle-fecha"></span></p>
+      <p><strong>Estado:</strong> <span id="detalle-estado"></span></p>
+      <p><strong>Total:</strong> <span id="detalle-total"></span> €</p>
+      <h6>Productos:</h6>
+      <ul id="detalle-productos"></ul>
+      <button class="btn blue darken-2" onclick="cerrarDetalle()">Cerrar</button>
+    </section>
+
+
+    <div class="center-align" style="margin-top: 20px;">
+      <button class="btn grey lighten-1" onclick="window.location.href='/menu'">Volver al menú</button>
+    </div>
+  </main>
+
+  <script>
+    fetch("/api/pedidos")
+      .then(res => res.json())
+      .then(pedidos => {
+        const ul = document.getElementById("lista-pedidos");
+        ul.innerHTML = "";
+
+        if (Array.isArray(pedidos)) {
+          if (pedidos.length === 0) {
+            ul.innerHTML = "<li class='collection-item'>No tienes pedidos.</li>";
+            return;
+          }
+
+          pedidos.forEach(p => {
+            const li = document.createElement("li");
+            li.className = "collection-item";
+            li.innerHTML = `
+                            <div>
+                              <b>Pedido #${p.id}</b> - ${p.fecha_pedido} - <i>${p.estado}</i> - Total: <b>${p.total} €</b>
+                              <a class="secondary-content btn-small blue" onclick="verDetalle(${p.id})">Ver Detalle</a>
+                            </div>`;
+            ul.appendChild(li);
+          });
+        } else {
+          ul.innerHTML = `<li class='collection-item red-text'>${pedidos.error || "Error cargando pedidos."}</li>`;
+        }
+      })
+      .catch(err => {
+        console.error("Error:", err);
+        document.getElementById("lista-pedidos").innerHTML = "<li class='collection-item red-text'>Error de red.</li>";
+      });
+
+
+    function verDetalle(pedidoId) {
+      fetch(`/pedidos/${pedidoId}`)
+        .then(res => res.json())
+        .then(data => {
+          const pedido = data.pedido;
+          const productos = data.productos;
+
+          document.getElementById("detalle-fecha").textContent = pedido.fecha_pedido;
+          document.getElementById("detalle-estado").textContent = pedido.estado;
+          document.getElementById("detalle-total").textContent = pedido.total;
+
+          const ul = document.getElementById("detalle-productos");
+          ul.innerHTML = "";
+          productos.forEach(p => {
+            const li = document.createElement("li");
+            li.textContent = `${p.nombre} - ${p.precio_unitario} € x ${p.cantidad}`;
+            ul.appendChild(li);
+          });
+
+          document.getElementById("detalle-pedido").style.display = "block";
+        })
+        .catch(err => {
+          console.error("Error al obtener detalle:", err);
+        });
+    }
+
+    function cerrarDetalle() {
+      document.getElementById("detalle-pedido").style.display = "none";
+    }
+
+  </script>
+</body>
+
+</html>

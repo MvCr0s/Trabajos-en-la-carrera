@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Detalle del Pedido</title>
+    <link href="{{ url_for('static', filename='estilo2.css') }}" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet">
+</head>
+<body class="blue lighten-5">
+    <main class="container">
+        <h4 class="center-align">Detalle del Pedido</h4>
+        <div id="detalle-pedido" class="card-panel white"></div>
+
+        <div class="center-align" style="margin-top: 20px;">
+            <button class="btn grey lighten-1" onclick="window.location.href='/pedidos'">Volver a pedidos</button>
+        </div>
+    </main>
+
+    <script>
+        const pedidoId = window.location.pathname.split("/").pop();
+
+        fetch(`/pedidos/${pedidoId}`)
+            .then(res => res.json())
+            .then(data => {
+                const contenedor = document.getElementById("detalle-pedido");
+
+                if (data.error) {
+                    contenedor.innerHTML = `<p class="red-text">${data.error}</p>`;
+                    return;
+                }
+
+                const { pedido, productos } = data;
+                let html = `
+                    <p><strong>ID Pedido:</strong> ${pedido.id}</p>
+                    <p><strong>Fecha:</strong> ${pedido.fecha_pedido}</p>
+                    <p><strong>Estado:</strong> ${pedido.estado}</p>
+                    <p><strong>Total:</strong> ${pedido.total} €</p>
+                    <h5>Productos:</h5>
+                    <ul class="collection">`;
+
+                productos.forEach(p => {
+                    const totalLinea = (p.precio_unitario * p.cantidad).toFixed(2);
+                    html += `
+                        <li class="collection-item">
+                            <b>${p.nombre}</b> - ${p.precio_unitario} € × ${p.cantidad} = ${totalLinea} €
+                        </li>`;
+                });
+
+                html += "</ul>";
+                contenedor.innerHTML = html;
+            })
+            .catch(err => {
+                document.getElementById("detalle-pedido").innerHTML =
+                    "<p class='red-text'>Error cargando detalles del pedido.</p>";
+            });
+    </script>
+</body>
+</html>
+

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Editar Producto</title>
+    <link href="{{ url_for('static', filename='estilo2.css') }}" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet">
+</head>
+<body class="blue lighten-5">
+    <main class="container">
+        <h4 class="center-align">Editar Producto</h4>
+        <div class="card-panel">
+            <form id="form-editar-producto">
+                <div class="input-field">
+                    <input type="text" id="nombre" name="nombre" required>
+                    <label for="nombre">Nombre</label>
+                </div>
+
+                <div class="input-field">
+                    <textarea id="descripcion" name="descripcion" class="materialize-textarea"></textarea>
+                    <label for="descripcion">Descripción</label>
+                </div>
+
+                <div class="input-field">
+                    <input type="number" id="precio" name="precio" step="0.01" required>
+                    <label for="precio">Precio (€)</label>
+                </div>
+
+                <div class="input-field">
+                    <input type="number" id="stock" name="stock" required>
+                    <label for="stock">Stock</label>
+                </div>
+
+                <div class="center-align">
+                    <button class="btn green" type="submit">Guardar Cambios</button>
+                    <a href="/productos" class="btn grey">Cancelar</a>
+                </div>
+            </form>
+            <p id="resultado" class="center-align red-text" style="margin-top: 20px;"></p>
+        </div>
+    </main>
+
+    <!-- JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        const id = params.get("id");
+
+        // Cargar datos del producto
+        fetch(`/api/productos/${id}`)
+            .then(res => res.json())
+            .then(data => {
+                if (data.error) {
+                    document.getElementById("resultado").textContent = data.error;
+                } else {
+                    const producto = data[0];
+                    document.getElementById("nombre").value = producto.nombre;
+                    document.getElementById("descripcion").value = producto.descripcion || "";
+                    document.getElementById("precio").value = producto.precio;
+                    document.getElementById("stock").value = producto.stock;
+
+                    M.updateTextFields();  // Importante para que los labels se coloquen bien
+                }
+            });
+
+        // Enviar actualización
+        document.getElementById("form-editar-producto").addEventListener("submit", function(e) {
+            e.preventDefault();
+
+            const payload = {
+                nombre: document.getElementById("nombre").value,
+                descripcion: document.getElementById("descripcion").value,
+                precio: document.getElementById("precio").value,
+                stock: document.getElementById("stock").value
+            };
+
+            fetch(`/api/productos/${id}`, {
+                method: "PATCH",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(payload)
+            })
+            .then(res => res.json())
+            .then(res => {
+                document.getElementById("resultado").textContent = res.mensaje || res.error;
+                if (res.mensaje) {
+                    setTimeout(() => window.location.href = "/productos", 1500);
+                }
+            });
+        });
+    </script>
+</body>
+</html>
+
