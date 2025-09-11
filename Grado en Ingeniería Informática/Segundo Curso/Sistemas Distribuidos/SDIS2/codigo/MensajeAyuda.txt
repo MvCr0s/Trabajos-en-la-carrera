@@ -1,0 +1,19 @@
+
+    #
+   # #   #   # #    # #####    ##
+  #   #   # #  #    # #    #  #  #
+ #######   #   #    # #    # ######
+ #     #   #    ####  #####  #    #
+
+[Query|Ask|Show] Me
+   Muestra el nombre del personaje y stats.
+[Query|Ask|Show] Place
+   Muestra donde estoy y objetos presentes.
+[Activate|Open|Disclosure] <objeto>
+   Intenta actua sobre <objeto>
+   Si tiene exito con una puerta traspasa el umbral.
+   Si tiene exito con un cofre lo abre y recibe el contenido.
+[Exit|Abandon|Surrender]
+   Sale del juego.
+[Help]
+   Muestra este mensaje.
