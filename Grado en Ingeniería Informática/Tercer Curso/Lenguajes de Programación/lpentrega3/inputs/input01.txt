@@ -1,0 +1,7 @@
+class Persona {
+    attribute nombre: String;
+    attribute edad: Integer;
+}
+
+context Persona
+inv: self.edad > 0

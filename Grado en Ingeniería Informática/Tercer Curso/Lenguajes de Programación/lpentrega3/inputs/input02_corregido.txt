@@ -1,0 +1,192 @@
+
+class Asignatura {
+    attribute codigo identity: Integer; 
+    attribute nombre: String;
+    attribute creditos: Integer;
+    attribute acronimo: String;
+    attribute duracion: DuracionAsignatura;
+    attribute tipo: TipoAsignatura;
+    attribute esCuatrimestral: Boolean; // Añadido para evitar errores OCL
+}
+
+class PlanDeEstudios {
+    attribute codigo identity: Integer; 
+    attribute nivel: NivelEstudio;
+    attribute idiomas: String;
+    attribute creditos: Integer;
+    attribute tipo: TipoEnsennanza;
+    attribute duracion: Integer;
+    attribute plazas: Integer;
+}
+
+class AsignaturaEnPlan {
+    attribute tipo: TipoAsignatura;
+    attribute cursoAlQueSeAsocia: Integer;
+    attribute periodo: Periodo;
+    attribute grupos: Grupo[]; // Agregado como colección de grupos
+}
+
+class Grupo {
+    attribute tipo: TipoGrupo;
+    attribute estudiantes: Integer;
+    attribute curso: Curso;
+    attribute profesores: Profesor[];
+}
+
+class Curso {
+    attribute fechadeInicio: LocalDate;
+    attribute fechadeInicioSegundoCuatrimestre: LocalDate;
+}
+
+class Horario {
+    attribute horas: Integer;
+}
+
+class ProfesorPreviamenteEnArea {
+    attribute dedicacionEnPeriodo: Integer;
+}
+
+class Departamento {
+    attribute areas: AreaDeConocimiento[];
+}
+
+association {
+    name = AsignaturaEnPlanAsociacion
+    target = Asignatura 1..* -asignaturas {unique}
+    target = PlanDeEstudios 1..* <> -planes
+}
+
+association {
+    name = GrupoHorario
+    target = Profesor 1 -profesor
+    target = Horario 0..* -horas
+}
+
+association {
+    name = GrupoProfesor
+    target = Grupo 1 -grupo
+    target = Profesor 0..* -profesores
+}
+
+association {
+    name = GrupoCurso
+    target = Grupo 1 -grupo
+    target = Curso 1 -curso
+}
+
+association {
+    name = GrupoAsignatura
+    target = Grupo 1 -grupo
+    target = AsignaturaEnPlan 1 -asignatura
+}
+
+association {
+    name = ProfesorPreArea
+    target = Profesor 1 -profesor
+    target = ProfesorPreviamenteEnArea 1 -ProfesorPreviamenteEnArea
+}
+
+association {
+    name = DepartamentoArea
+    target = Departamento 1 -departamento
+    target = AreaDeConocimiento 0..* -areas
+}
+
+association {
+    name = AreaProfesor
+    target = AreaDeConocimiento 1 <> -area
+    target = Profesor 0..* -profesoresDelArea {unique}
+}
+
+association {
+    name = Asignacion
+    target = AsignaturaEnPlan 0..* -asignaturas {unique}
+    target = AreaDeConocimiento 1..* -areasDeConocimientoAsignadas {unique}
+}
+
+enumeration DuracionAsignatura {
+    literal CUATRIMESTRAL;
+    literal ANUAL;
+}
+
+enumeration TipoAsignatura {
+    literal OBLIGATORIA;
+    literal BASICA;
+    literal OPTATIVA;
+}
+
+enumeration Periodo {
+    literal PRIMERCUATRIMESTRE;
+    literal SEGUNDOCUATRIMESTRE;
+    literal ANUAL;
+}
+
+enumeration TipoGrupo {
+    literal TEORIA;
+    literal PRACTICA;
+    literal SEMINARIO;
+    literal AULA;
+}
+
+enumeration TipoEnsennanza {
+    literal PRESENCIAL;
+    literal SEMIPRESENCIAL;
+    literal VIRTUAL;
+}
+
+enumeration NivelEstudio {
+    literal GRADO;
+    literal MASTER;
+    literal DOCTORADO;
+}
+
+datatype LocalDate = {
+    field day: Integer;
+    field month: Integer;
+    field year: Integer;
+    static operation now(): LocalDate;
+    operation getYear(): Integer;
+    operation isBefore(other: LocalDate): Boolean;
+}
+
+context Asignatura
+inv: self.esCuatrimestral=true implies
+(self.asignaturas.periodo=Periodo::PRIMERCUATRIMESTRE or
+self.asignaturas.periodo=Periodo::SEGUNDOCUATRIMESTRE)
+inv: self.esCuatrimestral=false implies
+(self.asignaturas.periodo=Periodo::ANUAL)
+
+context Asignatura
+inv:
+self.asignaturas.areasDeConocimientoAsignadas.porcentaje->sum()=100
+
+context AsignaturaEnPlan
+inv: (self.tipo=TipoAsignatura::BASICA or self.tipo=TipoAsignatura::OBLIGATORIA)
+implies self.grupos.tipo->select(t | t = TipoGrupo::TEORIA)->size()>=1
+inv: (self.tipo=TipoAsignatura::BASICA or self.tipo=TipoAsignatura::OBLIGATORIA)
+implies self.grupos.tipo->select(t | t = TipoGrupo::PRACTICA)->size()>=1
+inv: self.tipo=TipoAsignatura::OPTATIVA and
+(self.grupos.curso.fechadeInicio.getYear().isEqual(LocalDate.now().getYear()-1)
+and self.grupos.estudiantes->size()<5) implies
+(self.grupos.curso.fechadeInicio.getYear().isEqual(LocalDate.now().getYear())
+and self.grupos->size()>=0)
+
+context AsignaturaEnPlan
+inv: self.periodo=Periodo::ANUAL implies (self.grupos.profesores->size()>0 and
+(LocalDate.now().isBefore(self.grupos.curso.fechadeInicio)))
+inv: self.periodo=Periodo::PRIMERCUATRIMESTRE implies (self.grupos.profesores->size()>0 and
+(LocalDate.now().isBefore(self.grupos.curso.fechadeInicio)))
+inv: self.periodo=Periodo::SEGUNDOCUATRIMESTRE implies self.grupos.profesores->size()>0 and
+(LocalDate.now().isBefore(self.grupos.curso.fechadeInicioSegundoCuatrimestre))
+
+context Profesor
+inv: self.ProfesorPreviamenteEnArea.dedicacionEnPeriodo >= 0
+and self.ProfesorPreviamenteEnArea.dedicacionEnPeriodo <= 100
+inv: self.grupos.asignatura.periodo=Periodo::PRIMERCUATRIMESTRE implies self.horas->size() =
+(6*(self.ProfesorPreviamenteEnArea.dedicacionEnPeriodo/100))
+inv: self.grupos.asignatura.periodo=Periodo::SEGUNDOCUATRIMESTRE implies self.horas->size() =
+(6*(self.ProfesorPreviamenteEnArea.dedicacionEnPeriodo/100))
+
+context Departamento
+inv:
+self.areas.ProfesorPreviamenteEnArea.dedicacionEnPeriodo->sum()>=1500
