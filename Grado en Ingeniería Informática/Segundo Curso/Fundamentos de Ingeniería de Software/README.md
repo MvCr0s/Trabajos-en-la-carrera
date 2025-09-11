@@ -8,7 +8,7 @@ Se centra en el **ciclo de vida del software**, los **requisitos**, el **modelad
 
 ## 🔹 Contenidos principales
 
-### 📖 Introducción a la Ingeniería del Software:contentReference[oaicite:3]{index=3}
+### 📖 Introducción a la Ingeniería del Software
 - Qué es software y sus atributos de calidad (mantenibilidad, confiabilidad, eficiencia, usabilidad).
 - Importancia económica y magnitud de los sistemas software.
 - Ciclo de vida del software: especificación → diseño → implementación → pruebas → mantenimiento.
@@ -19,7 +19,7 @@ Se centra en el **ciclo de vida del software**, los **requisitos**, el **modelad
   - Toma de decisiones.
 - UML como lenguaje estándar de modelado.
 
-### 📋 Ingeniería de requisitos:contentReference[oaicite:4]{index=4}
+### 📋 Ingeniería de requisitos
 - Definición de requisitos: usuario, sistema, funcionales y no funcionales.
 - Utilidad de los requisitos: fijar servicios, restricciones y comportamientos.
 - Requisitos funcionales (RF) → servicios del sistema.  
