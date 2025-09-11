@@ -1,0 +1,663 @@
+%%writefile matrixMul.cu
+
+/**
+ * Matrix Multiplication: C = A * B.
+ *
+ * This file contains both device and host code to compute a matrix multiplication.
+ *
+ */
+
+#include <math.h>
+#include <stdio.h>
+
+#define MATRIX_DIM   32
+#define SEGMENT_SIZE 32
+
+// --------------------
+// Device Kernels
+// --------------------
+__global__ void transposeMatrix(float *d_data, int mat_dim) {
+
+	// Array in Shared Memory
+	extern __shared__ float sdata[];
+
+  int tid_b = threadIdx.x;
+	int tid_g = (blockIdx.y * blockDim.x + tid_b) * mat_dim + (blockIdx.x * blockDim.x);
+
+	for (int i=0; i < blockDim.x; i++) {
+		sdata[tid_b * blockDim.x + i] = d_data[tid_g + i];
+	}
+
+	__syncthreads();
+
+	tid_b = threadIdx.x;
+	tid_g = (blockIdx.x * blockDim.x + tid_b) * mat_dim + (blockIdx.y * blockDim.x);
+
+	for (int i=0; i < blockDim.x; i++) {
+		d_data[tid_g + i] = sdata[i * blockDim.x + tid_b];
+	}
+
+}
+
+__global__ void scalarProd(float *C, const float *A, const float *B, int nElem) {
+
+	int idx = blockIdx.x * blockDim.x + threadIdx.x;
+	if (idx < nElem) {
+		C[idx] = A[idx] * B[idx];
+	}
+
+}
+
+__global__ void vectorReduce(float *R, const float *C, int nElem)
+{
+	// Array in Shared Memory
+    extern __shared__ float sdata[];
+
+	int tid = threadIdx.x;
+	int idx = blockIdx.x * blockDim.x + threadIdx.x;
+
+	sdata[tid] = (idx < nElem) ? C[idx] : 0.0f;
+	__syncthreads();
+
+	for (unsigned int s = blockDim.x / 2; s > 0; s >>= 1) {
+		if (tid < s) {
+			sdata[tid] += sdata[tid + s];
+		}
+		__syncthreads();
+	}
+
+	if (tid == 0) {
+		R[blockIdx.x]=sdata[0];
+	}
+
+}
+
+// ---------------------
+// Host Utility Routines
+// ---------------------
+void matrixMul(const float *A, const float *B, float *C, const int n)
+{
+	for (int i = 0; i < n; i++) {
+		for (int j = 0; j < n; j++) {
+			float acum = 0.0f;
+			for (int k = 0; k < n; k++) {
+				acum += A[i * n + k] * B[k * n + j];
+			}
+			C[i * n + j] = acum;
+		}
+	}
+}
+
+bool compareData(float *h_C, float *d_C, int n) {
+	float eps = 1.E-3f;
+	for (int i = 0; i < n * n; i++) {
+		if (fabsf(h_C[i] - d_C[i]) > eps) {
+            printf("Error en el índice %d: Host=%.6f, Device=%.6f\n", i, h_C[i], d_C[i]);
+			return false;
+		}
+	}
+	return true;
+}
+
+void printMatrix(const float *M, int dim) {
+    for (int i = 0; i < dim; i++) {
+        for (int j = 0; j < dim; j++) {
+            // Print as integer-like for clarity
+            printf("%4.0f ", M[i * dim + j]);
+        }
+        printf("\n");
+    }
+    printf("\n");
+}
+
+void transposeCPU(float *At, float *A, const int dim_x, const int dim_y)
+{
+    for (int y = 0; y < dim_y; y++) {
+        for (int x = 0; x < dim_x; x++) {
+            At[x * dim_y + y] = A[y * dim_x + x];
+        }
+    }
+}
+
+
+
+float randFloat(float low, float high) {
+	float t = (float) rand() / (float) RAND_MAX;
+	return (1.0f - t) * low + (t * high);
+}
+
+// ------------
+// Main Program
+// ------------
+int main( void ) {
+
+	// Matrix Dimensions
+	int dim_x = MATRIX_DIM;
+	int dim_y = dim_x;
+
+	// Matrix Size
+	int mat_size = dim_x * dim_y;
+
+	// Block Dimension
+	int block_dim = SEGMENT_SIZE;
+
+	// Number of Blocks
+	int n_block = ( dim_x % block_dim == 0 ) ? (dim_x / block_dim) : (dim_x / block_dim + 1);
+
+	// Execution Configuration Parameters
+	dim3 blocksPerGrid (n_block , n_block);
+	dim3 blockPerGridReduce  ( n_block );
+	dim3 threadsPerBlock( block_dim );
+
+	// Size Required to Store the Matrix
+	size_t n_bytes = (mat_size * sizeof(float));
+
+	// Allocate Pinned Host Memory
+	float *h_A, *h_B, *h_C, *h_R;
+
+	cudaHostAlloc((void**)&h_A, n_bytes, cudaHostAllocDefault);
+	cudaHostAlloc((void**)&h_B, n_bytes, cudaHostAllocDefault);
+	cudaHostAlloc((void**)&h_C, n_bytes, cudaHostAllocDefault);
+	cudaHostAlloc((void**)&h_R, n_bytes, cudaHostAllocDefault);
+
+	// Initialize Host Data
+	srand(123);
+
+	// Generating input data on CPU
+	for (int i=0; i < mat_size; i++) {
+		h_A[i] = randFloat(0.0f, 1.0f);
+		h_B[i] = randFloat(0.0f, 1.0f);
+	}
+
+	// Compute Reference Matrix Multiplication
+	matrixMul(h_A, h_B, h_C, dim_x);
+
+	// CUDA Streams
+	cudaStream_t stream;
+
+	// Create Stream
+	cudaStreamCreateWithFlags(&stream, cudaStreamNonBlocking);
+
+	// Performance Data
+	float kernel_time, kernel_bandwidth;
+
+	// Allocate Device Memory
+	float *d_A, *d_B, *d_C,*d_Temp;
+
+	cudaMalloc((void **) &d_A, n_bytes);
+  cudaMalloc((void **) &d_B, n_bytes);
+  cudaMalloc((void **) &d_C, n_bytes);
+  cudaMalloc((void **) &d_Temp,dim_x * sizeof(float));
+
+	// CUDA Events
+	cudaEvent_t start, stop;
+
+	// Init Events
+	cudaEventCreate(&start);
+	cudaEventCreate(&stop );
+
+	// Start Time Measurement
+    cudaEventRecord(start, stream);
+
+	// Copy Host Data to Device
+
+	cudaMemcpyAsync(d_A,h_A,n_bytes,cudaMemcpyHostToDevice,stream);
+  cudaMemcpyAsync(d_B,h_B,n_bytes,cudaMemcpyHostToDevice,stream);
+
+	cudaStreamSynchronize(stream);
+	size_t shared_bytes = block_dim * block_dim* sizeof(float);
+	transposeMatrix<<< blocksPerGrid , threadsPerBlock , shared_bytes, stream >>>( d_B, dim_x );
+
+	cudaStreamSynchronize(stream);
+
+  for(int i = 0; i < dim_y; i++) {
+		for(int j = 0; j < dim_x; j++) {
+			scalarProd<<< blockPerGridReduce , threadsPerBlock ,0,stream>>> ( d_Temp, d_A + (i * dim_x) , d_B + (j * dim_x), dim_x );
+			cudaStreamSynchronize(stream);
+			size_t shared_bytes_reduce = block_dim * sizeof(float);
+			vectorReduce<<< blockPerGridReduce , threadsPerBlock , shared_bytes_reduce, stream>>>( d_C + (i * dim_x + j) , d_Temp, dim_x );
+		}
+	}
+	cudaDeviceSynchronize();
+
+	// Copy Device Data to Host
+
+	cudaMemcpyAsync(h_R,d_C,n_bytes,cudaMemcpyDeviceToHost,stream);
+
+	cudaStreamSynchronize(stream);
+
+	// End Time Measurement
+	cudaEventRecord(stop, stream);
+	cudaEventSynchronize(stop);
+
+	cudaEventElapsedTime(&kernel_time, start, stop);
+
+	bool res = compareData(h_C, h_R, dim_x);
+
+	if (res == true) {
+		// Report Effective Bandwidth
+		kernel_bandwidth = (2.0f * 1000.0f * n_bytes)/(1024 * 1024 * 1024);
+		kernel_bandwidth /= kernel_time;
+
+		printf( "Throughput = %.4f GB/s, Time = %.5f ms, Size = %u fp32 elements, \n",
+				 kernel_bandwidth, kernel_time, (dim_x * dim_y) );
+	}
+
+	// Free Host Memory
+	cudaFreeHost(h_A);
+	cudaFreeHost(h_B);
+	cudaFreeHost(h_C);
+	cudaFreeHost(h_R);
+
+	// Free Device Memory
+	cudaFree(d_A);
+	cudaFree(d_B);
+	cudaFree(d_C);
+
+	// Destroy Events
+	cudaEventDestroy(start);
+	cudaEventDestroy(stop);
+
+	// Destroy Stream
+	cudaStreamDestroy(stream);
+
+	if (res == false) {
+		printf("Test Failed!\n");
+		exit(EXIT_FAILURE);
+	}
+	printf("Test Passed\n");
+	exit(EXIT_SUCCESS);
+}
+
+
+
+
+
+
+----------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+#include "cuda_runtime.h"
+#include "device_launch_parameters.h"
+
+#include <stdio.h>
+
+#define MATRIX_DIM   4
+#define SEGMENT_SIZE 4
+
+__global__ void sumaMatrix(float* matriz, float* aux, int dim) {
+
+    extern __shared__ float sdata[];
+    //printf("hola");
+
+    
+    int tid_b = threadIdx.x;
+    int blockId = blockIdx.y * gridDim.x + blockIdx.x;
+    int tid_g = blockId * blockDim.x + tid_b;
+
+
+    if (tid_g < dim * dim) {
+        sdata[tid_b] = matriz[tid_g];
+    }
+    else {
+        sdata[tid_b] = 0.0;
+    }
+
+    __syncthreads();
+
+    for (int s = blockDim.x / 2; s > 0; s >>= 1) {
+        if (tid_b % 2 == 0 && tid_b + s < blockDim.x && (tid_b + s) % 2 == 0) {
+            sdata[tid_b] += sdata[tid_b + s];
+        }
+        __syncthreads();
+    }
+
+    if (tid_b == 0) {
+        aux[blockId] = sdata[0];
+        //printf("Resultado final almacenado en aux[0] = %.1f\n", aux[blockIdx.y * gridDim.x + blockIdx.x]);
+    }
+}
+
+
+
+__global__ void reduce(float* red, float* aux, int dim) {
+
+    extern __shared__ float sdata_final[];
+
+    int tid = threadIdx.x;
+    int tid_b = blockIdx.y * blockDim.x + threadIdx.x;
+
+
+    if (tid < dim * dim) {
+        sdata_final[tid] = aux[tid_b];
+    }
+    else {
+        sdata_final[tid] = 0.0;
+    }
+
+    __syncthreads();
+
+    for (int s = blockDim.x / 2; s > 0; s >>= 1) {
+        if (tid < s) {
+            sdata_final[tid] += sdata_final[tid + s];
+        }
+        __syncthreads();
+    }
+
+    if (tid == 0) {
+        *red = sdata_final[0];
+        //printf("Resultado final almacenado en red[0] = %.1f\n", *red);
+    }
+}
+
+
+
+
+float sumarPosicionesPares(const float* matriz, int filas, int columnas) {
+    float suma = 0.0f;
+
+    for (int i = 0; i < filas * columnas; i++) {
+        if (i % 2 == 0) { // posición par en el array lineal
+            suma += matriz[i];
+        }
+    }
+
+    return suma;
+}
+
+
+void imprimirMatrizYResultado(const float* matriz, int filas, int columnas, float suma) {
+    //printf("Matriz (%dx%d):\n", filas, columnas);
+    for (int i = 0; i < filas; i++) {
+        for (int j = 0; j < columnas; j++) {
+            //printf("%6.1f ", matriz[i * columnas + j]);
+        }
+        //printf("\n");
+    }
+    printf("\nSuma de posiciones pares: %.1f\n", suma);
+}
+
+
+
+int main(void) {
+    int dim_x = MATRIX_DIM;
+    int dim_y = dim_x;
+
+    int mat_size = dim_x * dim_y;
+
+    int block_dim = SEGMENT_SIZE;
+
+    int n_block = (mat_size + block_dim - 1) / block_dim;
+
+    dim3 blocksPerGrid(n_block/2, n_block/2);
+    dim3 threadsPerBlock(block_dim);
+
+    size_t n_bytes = (mat_size * sizeof(float));
+
+    float* h_Mat = (float*)malloc(n_bytes);
+    float* h_Red = (float*)malloc(n_block * sizeof(float));
+
+    for (int i = 0; i < mat_size; i++) {
+        h_Mat[i] = i;
+    }
+
+    cudaStream_t stream;
+    cudaStreamCreateWithFlags(&stream, cudaStreamNonBlocking);
+
+    cudaEvent_t start, stop;
+    cudaEventCreate(&start);
+    cudaEventCreate(&stop);
+
+    cudaEventRecord(start, stream);
+
+    float* d_Mat, * d_Red, * d_aux;
+    cudaMalloc((void**)&d_Mat, n_bytes);
+    cudaMalloc((void**)&d_Red, n_block * sizeof(float));
+    cudaMalloc((void**)&d_aux, n_block * sizeof(float));
+
+    //cudaMemcpy(d_Mat, h_Mat, n_bytes, cudaMemcpyHostToDevice);
+    cudaMemcpyAsync(d_Mat, h_Mat, n_bytes, cudaMemcpyHostToDevice, stream);
+
+    sumaMatrix <<< blocksPerGrid, threadsPerBlock, block_dim * sizeof(float), stream >>> (d_Mat, d_aux, dim_x);
+    //cudaDeviceSynchronize();
+    cudaStreamSynchronize(stream);
+
+
+    reduce <<< 1, threadsPerBlock, block_dim * sizeof(float), stream >>> (d_Red, d_aux, dim_x);
+    //cudaDeviceSynchronize();
+    cudaStreamSynchronize(stream);
+
+    //cudaMemcpy(h_Red, d_Red, n_block * sizeof(float), cudaMemcpyDeviceToHost);
+    cudaMemcpyAsync(h_Red, d_Red, n_block * sizeof(float), cudaMemcpyDeviceToHost, stream);
+
+    cudaEventRecord(stop, stream);
+    cudaEventSynchronize(stop);
+
+    float ms;
+    cudaEventElapsedTime(&ms, start, stop);
+
+    float suma = sumarPosicionesPares(h_Mat, dim_y, dim_x);
+
+    printf("\nSumaaaaaaaaaaaaaa de posiciones pares: %.1f\n", suma);
+
+    imprimirMatrizYResultado(h_Mat, dim_y, dim_x, h_Red[0]);
+
+    printf("Tiempo kernel GPU: %.5f ms\n", ms);
+
+
+    free(h_Mat);
+    free(h_Red);
+
+    cudaFree(d_Mat);
+    cudaFree(d_Red);
+    cudaFree(d_aux);
+
+    cudaEventDestroy(start);
+    cudaEventDestroy(stop);
+    cudaStreamDestroy(stream);
+
+    if (h_Red[0] - suma > 1e-4) {
+        printf("Test Failed!\n");
+        exit(EXIT_FAILURE);
+    }
+
+    printf("Test Passed\n");
+    exit(EXIT_SUCCESS);
+
+}
+
+
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+%%writefile scalarProd.cu
+
+/*
+ * This file contains both device and host code to calculate the
+ * scalar product of two vectors of N elements.
+ * 
+ */
+
+#include <stdio.h>
+
+#define N 1024
+#define SEGMENT_SIZE 64
+
+///////////////////////////////////////////////////////////////////////////////
+//
+// Computes the scalar product of two vectors of N elements on GPU.
+//
+///////////////////////////////////////////////////////////////////////////////
+__global__ void scalarProd(float *C, const float *A, const float *B, int nElem) {
+
+	// COMPLETAR...
+    int tid = blockIdx.x * blockDim.x + threadIdx.x;
+
+    if(tid < nElem){
+        C[tid]=A[tid]*B[tid];
+    }
+}
+
+/////////////////////////////////////////////////////////////////
+//
+// Computes a standard parallel reduction on GPU.
+//
+/////////////////////////////////////////////////////////////////
+__global__ void vectorReduce(float *R, const float *C, int nElem)
+{
+	// Array in Shared Memory
+    extern __shared__ float sdata[];
+	
+	// COMPLETAR...
+    int tid = threadIdx.x;
+
+    int tig = blockIdx.x * blockDim.x + tid;
+
+    if(tig < nElem){
+        sdata[tid]=C[tig];
+    }else{
+        sdata[tid]=0.0;
+    }
+
+    __syncthreads();
+
+    for(int s= blockDim.x/2; s>0; s>>=1){
+        if(tid < s){
+            sdata[tid]+=sdata[tid + s];
+        }
+        __syncthreads();
+    }
+
+    if(tid==0){
+        R[ blockIdx.x ]=sdata[0];
+    }
+}
+
+// -----------------------------------------------
+// Host Utility Routines
+// -----------------------------------------------
+float scalarProd_CPU(float *A, float *B, int nElem)
+{
+	float suma = 0.0f;	
+	for (int i = 0; i < nElem; i++) {
+		suma += A[i] * B[i];
+	}
+	return suma;
+}
+
+float randFloat(float low, float high) {
+	float t = (float) rand() / (float) RAND_MAX;
+	return (1.0f - t) * low + (t * high);
+}
+
+// ------------
+// Main Program
+// ------------
+int main( void ) {
+
+	// Array Elements
+	int n_elem = N;
+	
+	// Block Dimension
+	int block_dim = SEGMENT_SIZE;
+	
+	// Number of Blocks
+	int n_block = ( n_elem % block_dim == 0 ) ? (n_elem / block_dim) : ((n_elem / block_dim) + 1); // COMPLETAR...
+	
+	// Execution Configuration Parameters
+	dim3 blocks ( n_block );// COMPLETAR...
+	dim3 threads( block_dim );// COMPLETAR...
+	
+	// Size (in bytes) Required to Store the Matrix
+	size_t n_bytes = (n_elem * sizeof(float));
+	
+	// Allocate Host Memory
+	float *h_A = (float *) malloc( n_bytes );// COMPLETAR...
+	float *h_B = (float *) malloc( n_bytes );// COMPLETAR...
+	float *h_R = (float *) malloc( n_block * sizeof(float) );// COMPLETAR...
+		
+	// Initialize Host Data
+	srand(123);
+	
+	// Generating input data on CPU
+	for (int i=0; i < n_elem; i++) {
+		h_A[i] = randFloat(0.0f, 1.0f);
+		h_B[i] = randFloat(0.0f, 1.0f);
+	}
+	
+	// Compute Reference CPU Solution
+	float result_cpu = scalarProd_CPU(h_A, h_B, n_elem);
+	
+	// CUDA Events
+	cudaEvent_t start, stop;
+	
+	// Allocate Device Memory
+	float *d_A, *d_B, *d_C, *d_R;
+	cudaMalloc((void **)&d_A, n_bytes );// COMPLETAR...
+	cudaMalloc((void **)&d_B, n_bytes );// COMPLETAR...
+	cudaMalloc((void **)&d_C, n_bytes );// COMPLETAR...
+	cudaMalloc((void **)&d_R, n_block * sizeof(float) );// COMPLETAR...
+	
+	// Init Events
+	cudaEventCreate(&start);
+	cudaEventCreate(&stop );
+	
+	// Start Time Measurement
+    cudaEventRecord(start, 0);
+	
+	// Copy Host Data to Device
+	
+	// COMPLETAR...
+    cudaMemcpy(d_A, h_A, n_bytes, cudaMemcpyHostToDevice);
+    cudaMemcpy(d_B, h_B, n_bytes, cudaMemcpyHostToDevice);
+
+	scalarProd<<< n_block, threads >>>(d_C, d_A, d_B, n_elem); // COMPLETAR...
+	cudaDeviceSynchronize();
+	vectorReduce<<< n_block, threads, block_dim * sizeof(float) >>>(d_R, d_C, n_elem);// COMPLETAR...(teniendo en cuenta memoria shared)
+	
+	// Copy Device Data to Host
+    
+	// COMPLETAR...
+    cudaMemcpy(h_R, d_R, n_block * sizeof(float), cudaMemcpyDeviceToHost);
+	
+	// End Time Measurement
+	cudaEventRecord(stop, 0);
+	cudaEventSynchronize(stop);
+
+	float kernel_time;
+	cudaEventElapsedTime(&kernel_time, start, stop);
+    printf("Execution Time by the GPU: %.2f\n", kernel_time);
+
+	float result_gpu = 0.0f;
+	for (int i=0; i < n_block; i++) {
+		result_gpu += h_R[i];
+	}
+	
+	// Free Host Memory
+	free(h_A); free(h_B); free(h_R);
+	
+	// Free Device Memory
+	cudaFree(d_A); cudaFree(d_B);
+	cudaFree(d_C); cudaFree(d_R);
+	
+	// Destroy Events
+	cudaEventDestroy(start);
+	cudaEventDestroy(stop);
+	
+	if (result_cpu != result_cpu) {
+		printf("Test Failed!\n");
+		exit(EXIT_FAILURE);
+	}
+	printf("Test Passed\n");
+	exit(EXIT_SUCCESS);
+}
+
+
+
+
+-----------------------------------------------------------------------------------------------------------------------------------------
+
+
+
