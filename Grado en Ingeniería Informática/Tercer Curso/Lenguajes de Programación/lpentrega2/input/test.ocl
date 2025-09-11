@@ -1,0 +1,6 @@
+context Persona {
+  inv: self.edad >= 18
+  def: calcularDescuento() : Real {
+    self.pedidos->select(p | p.total > 100)->size()
+  }
+}

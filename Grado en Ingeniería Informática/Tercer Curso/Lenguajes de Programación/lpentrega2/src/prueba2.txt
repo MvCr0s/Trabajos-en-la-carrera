@@ -1,0 +1,6 @@
+context Persona : Person
+inv: self.edad > 18 and self.nombre->notEmpty()
+
+context Pedido : Order
+inv: self.items->size() > 0
+
