@@ -1,0 +1,96 @@
+
+Ejemplo de uso de modos de comunicación 
+---------------------------------------
+	Este programa tiene dos argumentos, un tamaño de array <size>
+	y un salto <jump>. Cada proceso reserva memoria para dos arrays
+	de ese tamaño y rellena el primero con valores diferentes.
+	
+	Cada proceso manda su array al proceso que tiene un rank igual
+	al suyo + jump en rotación circular. Y recibe en el segundo array
+	los datos que llegan desde el proceso rank - jump en rotación circular.
+
+	1) Completar los puntos suspensivos para que el programa funcione
+		correctamente.
+	2) Probar que es correcto para arrays de longitud 10, con un número
+		de procesos igual a 5 y 8, y saltos con valor 3 y 4.
+	3) Comprobar qué ocurre si el numero de salto es igual o mayor al número 
+		de procesos.
+
+	4) Para 5 procesos y salto 2, ir incrementando el tamaño del array
+		en potencias de 10 (10, 100, 1000, 10000, 100000, ...)
+		hasta que las comunicaciones en modo estándar pasen de ser buffered
+		a ser synchronous. ¿Cómo se nota cuándo ocurre esto?
+
+	5) Resolver el problema utilizando comunicaciones no bloqueantes.
+		Comprobar que funciona correctamente con tamaños de array mayores.
+
+
+Ejemplo de intercambio entre vecinos
+--------------------------------------
+	Este código ejecuta un proceso iterativo sobre un array. En cada iteración
+	el valor de cada celda se aliza con el valor de las dos vecinas en 
+	la iteración anterior. 
+
+	1) Partir el array de forma que cada proceso tenga un bloque contiguo
+	de tamaño similar (no más de un elemento de diferencia). Cambiar las
+	reservas de memoria e inicialización para que entre todos los procesos
+	se mantenga el estado del array global que se ha partido.
+
+	2) Verificaciones
+	2.1) Añade una operación de reducción para calcular la suma global.	
+
+	2.1) Cambia el programa para que antes de llamar a la función de imprimir array
+	se agrupen todos los datos de los arrays locales en un único array completo 
+	en el proceso 0. La llamada a la función de imprimir sólo la ejecutará el
+	proceso 0.
+	NOTA: Este sistema de verificación no se puede utilizar cuando los tamaños 
+	son muy grandes y el array global puede exceder el tamaño de la memoria de 
+	un proceso. Pero nos sirve para estas pruebas.
+
+	Comprueba con un array de tamaño 10 posiciones, con 1, 2, 4, ... procesos, 
+	y siempre 0 iteraciones que la inicialización es correcta en todos los casos
+	(igual que el resultado del programa secuencial).
+
+
+	3) Modificar el proceso iterativo
+	En cada iteración las celdas del array que están en los extremos del subarray
+	local necesitan actualizarse en función de los valores de las celdas vecinas.
+	Pero en los extremos hay vecinas que se han calculado en otros procesos y no
+	están en el proceso local. Hay que traer esos valores.
+
+	Añade al array local dos celdas más. Una por cada lado. Estas celdas se denominan
+	halos. Sirven para almacenar el valor de las celdas de los extremos de los
+	procesadores vecinos.
+
+        Pi Array local:              v-v-v-v-v-v
+        Pi Array local con halos:  h-v-v-v-v-v-v-h
+
+	Añade comunicaciones punto a punto entre los procesos de rank consecutivos para que 
+	cada proceso envíe los extremos de su array local al vecino correspondiente, y que
+	esas comunicaciones que provienen de los vecinos se reciban en los halos.
+
+        Pi Enviar:                 h-v-v-v-v-v-v-h
+                                     |         |
+                                <----+         +---->
+
+        Pi Recibir:           >----+             +----<
+                                   |             |
+                                   h-v-v-v-v-v-v-h
+
+	Ahora el bucle local debe recorrer las posiciones locales (sin contar los halos)
+	igual que antes, actualizando las celdas del array local.
+
+        Pi Computar:               h-v-v-v-v-v-v-h
+                                    \ X X X X X /
+                                     t-t-t-t-t-t
+                                     | | | | | |
+                                   h-v-v-v-v-v-v-h
+
+	Ten en cuenta que en los extremos del array global es diferente. No hay comunicación
+	hacia la izq. del proceso 0 por ejemplo. Es habitual mantener los dos halos también
+	en los procesos de los extremos para que el código quede más sencillo, aunque no se
+	usen en esos dos procesos.
+
+	Comprueba con un array de tamaño 10 posiciones, con 1, 2, 4, ... procesos, 
+	1 y 10 iteraciones, que el resultado es siempre correcto.
+	
