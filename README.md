@@ -8,9 +8,9 @@
 El repositorio está organizado en carpetas, una por cada año de mi carrera.  
 Al hacer clic en cualquiera de ellas te llevará a explorar los proyectos correspondientes:
 
-- [Primer Curso](./Primer%20Curso)  
-- [Segundo Curso](./Segundo%20Curso)  
-- [Tercer Curso](./Tercer%20Curso)  
+- [Primer Curso](./Grado%20en%20Ingeniería%20Informática/Primer%20Curso)  
+- [Segundo Curso](./Grado%20en%20Ingeniería%20Informática/Segundo%20Curso)  
+- [Tercer Curso](./Grado%20en%20Ingeniería%20Informática/Tercer%20Curso)  
 
 ---
 
