@@ -1,0 +1,30 @@
+
+1. Observar y entender el contenido de func1.c, func2.c y main.c
+
+2. Para compilar las diferentes versiones ejecutar:
+	make
+
+3. Ejecutar dos o tres veces cada una de las siguietes versiones:
+	time ./original
+	time ./todoJunto
+	¿Hay diferencias substanciales de tiempo?
+
+4. Observar y entender la técnica de inlining usada en los ficheros:
+	inline_level1.c
+	inline_level2.c
+
+5. Ejecutar dos o tres veces cada una de las siguientes versiones:
+	time ./inline_l1
+	time ./inline_l2
+	¿Hay diferencias substanciales de tiempo con respecto a las versiones anteriores sin inlining?
+
+6. Editar el fichero Makefile. Añadir la opción -O3 a la línea de flags
+	 FLAGS=-Wall -O3
+
+7. Recompilar todo ejecutando:
+	make clean
+	make
+
+8. Volver a medir tiempos para cada versión del programa (dos o tres veces para
+	cada versión). ¿Qué se puede deducir de los tiempos observados?
+	

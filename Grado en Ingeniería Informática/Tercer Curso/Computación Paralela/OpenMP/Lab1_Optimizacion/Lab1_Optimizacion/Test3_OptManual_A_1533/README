@@ -1,0 +1,9 @@
+
+1. Optimizar el uso de cache en los accesos de datos del programa original matrixMult.c
+
+2. Comprueba si tarda de media más o menos tiempo al aumentar el tamaño de la matriz a 1536
+
+3. Optimizar el uso de cache en los accesos de datos del programa matrixMult2.c
+	Alinea el tamaño de matriz a 1536 manteniendo la cantidad de datos que se usan en 1533
+	¿Tarda lo mismo, más o menos que multiplicar 1533 elementos con el programa original?
+	

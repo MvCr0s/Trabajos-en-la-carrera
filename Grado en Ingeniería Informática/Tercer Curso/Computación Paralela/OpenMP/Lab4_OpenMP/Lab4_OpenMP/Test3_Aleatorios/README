@@ -1,0 +1,7 @@
+
+Paraleliza el bucle de generación de números aleatorios.
+
+Paraleliza el bucle de checksum.
+
+Ejecuta con diversos números de threads y comprueba que el resultado es siempre correcto.
+

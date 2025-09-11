@@ -1,0 +1,14 @@
+
+Con el mismo ejemplo 3 del ejercicio anterior.
+
+1. Crear una región paralela alrededor de los bucles de cómputo asegurandose
+	de declarar como privadas las variables necesarias.
+
+2. Dentro de la región, hacer que sólo un thread ejecute el bucle i
+
+3. Lanzar una tarea de OpenMP por cada iteración del bucle i. De esa forma
+	para cada i se ejecutará el bucle j completo en una tarea diferente.
+
+4. Comprobar que la paralelización es correcta, y comparar los tiempos de ejecución
+	con los obtenidos utilizando schedules en una directiva for.
+

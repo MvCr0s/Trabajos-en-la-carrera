@@ -1,0 +1,10 @@
+
+1. Manipular el orden de los bucles para optimizar el uso de cache en los accesos de datos 
+	del programa original matrixMult.c
+
+2. Comprueba si tarda de media más o menos tiempo al aumentar el tamaño de la matriz a 1664
+
+3. Aplica la misma optimización del uso de cache en los accesos de datos al programa matrixMult2.c
+	Alinea el tamaño de matriz a 1664 manteniendo la cantidad de datos que se multiplican en 1661.
+	¿Tarda lo mismo, más o menos que multiplicar 1661 elementos con el programa original?
+	

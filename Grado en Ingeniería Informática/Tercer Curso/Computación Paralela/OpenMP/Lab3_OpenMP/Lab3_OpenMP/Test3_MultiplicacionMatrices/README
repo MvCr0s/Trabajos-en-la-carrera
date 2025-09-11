@@ -1,0 +1,45 @@
+
+En la clase práctica anterior paralelizamos la multiplicación de matrices,
+paralelizando en diferentes pruebas cada uno de los tres bucles. 
+Sobre el algoritmo tal cual, o invirtiendo los dos bucles interiores.
+
+Por tanto hay tres posibilidades de paralelización en el algoritmo original, 
+y otras tres tras invertir los bucles interiores.
+
+
+1. ¿Derivan las seis combinaciones siempre en resultados correctos al paralelizar?
+
+	a) ¿Cuáles podían derivar en condiciones de competición o carrera, y por tanto en errores
+	impredecibles en los resultados. Anotar en la siguiente tabla, para cada combinación, 
+	cúales recuerdas que pueden producir errores y cuáles no.
+
+	Bucles no invertidos:
+		- Paralelizar i	  ( OK / Error )
+		- Paralelizar j	  ( OK / Error )
+		- Paralelizar k	  ( OK / Error )
+
+	Bucles j,k invertidos:
+		- Paralelizar i	  ( OK / Error )
+		- Paralelizar j	  ( OK / Error )
+		- Paralelizar k	  ( OK / Error )
+
+
+	b) Compilar cada versión con -O3 y ejecutar varias veces cada una de las combinaciones 
+	con 4 threads, para comprobar si se han detectado correctamente las posibles situaciones 
+	potencialmente problemáticas.
+
+
+2. En alguna de las versiones problemáticas, utilizar la directiva de región crítica para 
+	resolver el problema. Comprobar que los resultados son correctos con 4 threads.
+	Medir los tiempos de ejecución con diferentes números de threads y comparar 
+	con la versión sin región crítica. Usar siempre -O3
+
+
+3. En la misma versión, utilizar operaciones atómicas en lugar de región crítica.
+	Comprobar que los resultados son correctos con 4 threads. 
+	Medir los tiempos de ejecución con diferentes números de threads y comparar 
+	con las versiones anteriores. Usar siempre -O3
+
+4. Probar a crear una región paralela alrededor de los tres bucles, y utilizar sólo
+	omp for en el bucle a repartir. ¿Dónde hay que declarar las variables de índices
+	como privadas? ¿Cambian apreciablemente los resultados de corrección o tiempo?

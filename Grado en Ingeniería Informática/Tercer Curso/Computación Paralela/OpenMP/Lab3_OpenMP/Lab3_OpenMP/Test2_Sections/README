@@ -1,0 +1,17 @@
+
+Vamos a centrarnos en las partes de código que inicializan estructuras de datos tipo array.
+Partiendo de las dos versiones de código suministradas:
+
+1. Comprobar si el tiempo secuencial de ambas versiones es diferente. Con y sin optimizaciones
+	secuenciales (-O3). ¿Qué puede explicar las diferencias y similitudes?
+
+2. Sin y con optimizaciones automáticas (-O0 y -O3)
+	- Paralelizar el primer código con paralelismo de bucle
+	- Paralelizar el segundo código con tres secciones paralelas
+
+	a) Comprobar quién obtiene mejores tiempos de ejecución con 1 threads, comparar con el secuencial.
+	b) Comprobar quién obtiene mejores tiempos de ejecución con 3 threads.
+	c) Comprobar los resultados también con 2 y 4 threads para ambos códigos paralelos
+
+	Buscar explicaciones para los efectos observados
+

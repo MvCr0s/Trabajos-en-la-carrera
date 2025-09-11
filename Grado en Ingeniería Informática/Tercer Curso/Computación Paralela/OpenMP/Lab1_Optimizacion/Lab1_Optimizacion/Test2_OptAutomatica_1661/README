@@ -1,0 +1,5 @@
+
+1. Compilar con -O0 y con -O3 ambas versiones
+
+2. Comprobar las diferencias de tiempo de ejecución entre las 4 versiones
+

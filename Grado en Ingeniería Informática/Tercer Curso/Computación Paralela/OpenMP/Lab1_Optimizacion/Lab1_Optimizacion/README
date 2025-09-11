@@ -1,0 +1,14 @@
+
+1. Sigue las instrucciones de los fichero README de cada test
+
+2. Comienza con el Test1
+
+3. Sigue con Test2_OptAutomatica_1553
+	Si el tiempo de ejecución de matrixMult_O3 es menor de 5 segundos, pasa mejor a
+	la versión 1661 del Test2 y repítelo. 
+
+4. Con la versión escogida (1553 o 1661), sigue las instrucciones de los Test 3 y 4
+
+Las versiones 1661 son iguales que las 1553 pero con unas matrices algo más grandes donde 
+se verán mejor las diferencias de tiempo.
+
