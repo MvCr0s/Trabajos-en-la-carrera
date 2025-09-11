@@ -1,0 +1,267 @@
+Prefix(:=<http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1/>)
+Prefix(owl:=<http://www.w3.org/2002/07/owl#>)
+Prefix(rdf:=<http://www.w3.org/1999/02/22-rdf-syntax-ns#>)
+Prefix(xml:=<http://www.w3.org/XML/1998/namespace>)
+Prefix(xsd:=<http://www.w3.org/2001/XMLSchema#>)
+Prefix(rdfs:=<http://www.w3.org/2000/01/rdf-schema#>)
+
+
+Ontology(<http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1>
+Annotation(rdfs:comment "Esta ontología va desarrollando el ejemplo de la ontología \"pizza\" de:
+
+A Practical Guide to Building OWL Ontologies 
+Using Protégé 5.5 y 5.6.4 and Plugins 
+Edition 3.2 
+8 October 2021 
+Michael DeBellis 
+
+
+Correspondiente al laboratorio de la asignatura Ingeniería de Conocimiento, curso 2024-25.
+
+Carlos Alonso, Noviembre 2024.")
+
+Declaration(Class(<http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#AmericanaHotPizza>))
+Declaration(Class(<http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#AmericanaPizza>))
+Declaration(Class(<http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#AnchovyTopping>))
+Declaration(Class(<http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#CaperTopping>))
+Declaration(Class(<http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#CheeseTopping>))
+Declaration(Class(<http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#DeepPanBase>))
+Declaration(Class(<http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#GreenPepperTopping>))
+Declaration(Class(<http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#HamTopping>))
+Declaration(Class(<http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#JalapenoPepperTopping>))
+Declaration(Class(<http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#MargheritaPizza>))
+Declaration(Class(<http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#MeatTopping>))
+Declaration(Class(<http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#MozzarellaTopping>))
+Declaration(Class(<http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#MushroomTopping>))
+Declaration(Class(<http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#NamedPizza>))
+Declaration(Class(<http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#OliveTopping>))
+Declaration(Class(<http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#ParmesanTopping>))
+Declaration(Class(<http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#PepperTopping>))
+Declaration(Class(<http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#PepperoniTopping>))
+Declaration(Class(<http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#Pizza>))
+Declaration(Class(<http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#PizzaBase>))
+Declaration(Class(<http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#PizzaTopping>))
+Declaration(Class(<http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#PrawnTopping>))
+Declaration(Class(<http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#RedPepperTopping>))
+Declaration(Class(<http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#SalamiTopping>))
+Declaration(Class(<http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#SeafoodTopping>))
+Declaration(Class(<http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#SohoPizza>))
+Declaration(Class(<http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#SpicyBeefTopping>))
+Declaration(Class(<http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#ThinAndCrispyBase>))
+Declaration(Class(<http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#TomatoTopping>))
+Declaration(Class(<http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#TunaTopping>))
+Declaration(Class(<http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#VegetableTopping>))
+Declaration(ObjectProperty(<http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#hasBase>))
+Declaration(ObjectProperty(<http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#hasIngredient>))
+Declaration(ObjectProperty(<http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#hasTopping>))
+Declaration(ObjectProperty(<http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#isBaseOf>))
+Declaration(ObjectProperty(<http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#isIngredientOf>))
+Declaration(ObjectProperty(<http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#isToppingOf>))
+Declaration(NamedIndividual(<http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#DeepPanBase1>))
+Declaration(NamedIndividual(<http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#Pizza1>))
+
+############################
+#   Object Properties
+############################
+
+# Object Property: <http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#hasBase> (<http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#hasBase>)
+
+SubObjectPropertyOf(<http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#hasBase> <http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#hasIngredient>)
+InverseObjectProperties(<http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#hasBase> <http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#isBaseOf>)
+ObjectPropertyDomain(<http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#hasBase> <http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#Pizza>)
+ObjectPropertyRange(<http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#hasBase> <http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#PizzaBase>)
+
+# Object Property: <http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#hasIngredient> (<http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#hasIngredient>)
+
+SubObjectPropertyOf(<http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#hasIngredient> owl:topObjectProperty)
+
+# Object Property: <http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#hasTopping> (<http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#hasTopping>)
+
+SubObjectPropertyOf(<http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#hasTopping> <http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#hasIngredient>)
+InverseObjectProperties(<http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#hasTopping> <http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#isToppingOf>)
+ObjectPropertyDomain(<http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#hasTopping> <http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#Pizza>)
+ObjectPropertyRange(<http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#hasTopping> <http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#PizzaTopping>)
+
+# Object Property: <http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#isBaseOf> (<http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#isBaseOf>)
+
+SubObjectPropertyOf(<http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#isBaseOf> <http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#isIngredientOf>)
+
+# Object Property: <http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#isIngredientOf> (<http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#isIngredientOf>)
+
+SubObjectPropertyOf(<http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#isIngredientOf> owl:topObjectProperty)
+
+# Object Property: <http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#isToppingOf> (<http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#isToppingOf>)
+
+SubObjectPropertyOf(<http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#isToppingOf> <http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#isIngredientOf>)
+
+
+
+############################
+#   Classes
+############################
+
+# Class: <http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#AmericanaHotPizza> (<http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#AmericanaHotPizza>)
+
+AnnotationAssertion(rdfs:comment <http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#AmericanaHotPizza> "Y esta es la clasica pizza americana picante: mozarella, tomate, pimiento y jalapeño.")
+SubClassOf(<http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#AmericanaHotPizza> <http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#NamedPizza>)
+SubClassOf(<http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#AmericanaHotPizza> ObjectSomeValuesFrom(<http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#hasTopping> <http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#JalapenoPepperTopping>))
+SubClassOf(<http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#AmericanaHotPizza> ObjectSomeValuesFrom(<http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#hasTopping> <http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#MozzarellaTopping>))
+SubClassOf(<http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#AmericanaHotPizza> ObjectSomeValuesFrom(<http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#hasTopping> <http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#PepperoniTopping>))
+SubClassOf(<http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#AmericanaHotPizza> ObjectSomeValuesFrom(<http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#hasTopping> <http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#TomatoTopping>))
+
+# Class: <http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#AmericanaPizza> (<http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#AmericanaPizza>)
+
+AnnotationAssertion(rdfs:comment <http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#AmericanaPizza> "Y esta es la clasica pizza americana: mozarella, tomate y pimiento.")
+SubClassOf(<http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#AmericanaPizza> <http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#NamedPizza>)
+SubClassOf(<http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#AmericanaPizza> ObjectSomeValuesFrom(<http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#hasTopping> <http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#MozzarellaTopping>))
+SubClassOf(<http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#AmericanaPizza> ObjectSomeValuesFrom(<http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#hasTopping> <http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#PepperoniTopping>))
+SubClassOf(<http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#AmericanaPizza> ObjectSomeValuesFrom(<http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#hasTopping> <http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#TomatoTopping>))
+
+# Class: <http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#AnchovyTopping> (<http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#AnchovyTopping>)
+
+SubClassOf(<http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#AnchovyTopping> <http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#SeafoodTopping>)
+
+# Class: <http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#CaperTopping> (<http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#CaperTopping>)
+
+SubClassOf(<http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#CaperTopping> <http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#VegetableTopping>)
+
+# Class: <http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#CheeseTopping> (<http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#CheeseTopping>)
+
+SubClassOf(<http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#CheeseTopping> <http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#PizzaTopping>)
+
+# Class: <http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#DeepPanBase> (<http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#DeepPanBase>)
+
+SubClassOf(<http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#DeepPanBase> <http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#PizzaBase>)
+DisjointClasses(<http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#DeepPanBase> <http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#ThinAndCrispyBase>)
+
+# Class: <http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#GreenPepperTopping> (<http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#GreenPepperTopping>)
+
+SubClassOf(<http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#GreenPepperTopping> <http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#PepperTopping>)
+
+# Class: <http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#HamTopping> (<http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#HamTopping>)
+
+SubClassOf(<http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#HamTopping> <http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#MeatTopping>)
+
+# Class: <http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#JalapenoPepperTopping> (<http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#JalapenoPepperTopping>)
+
+SubClassOf(<http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#JalapenoPepperTopping> <http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#PepperTopping>)
+
+# Class: <http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#MargheritaPizza> (<http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#MargheritaPizza>)
+
+AnnotationAssertion(rdfs:comment <http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#MargheritaPizza> "La clásica piza Margarita: mozarella y tomate.")
+SubClassOf(<http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#MargheritaPizza> <http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#NamedPizza>)
+SubClassOf(<http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#MargheritaPizza> ObjectSomeValuesFrom(<http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#hasTopping> <http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#MozzarellaTopping>))
+SubClassOf(<http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#MargheritaPizza> ObjectSomeValuesFrom(<http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#hasTopping> <http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#TomatoTopping>))
+
+# Class: <http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#MeatTopping> (<http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#MeatTopping>)
+
+SubClassOf(<http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#MeatTopping> <http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#PizzaTopping>)
+
+# Class: <http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#MozzarellaTopping> (<http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#MozzarellaTopping>)
+
+SubClassOf(<http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#MozzarellaTopping> <http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#CheeseTopping>)
+DisjointClasses(<http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#MozzarellaTopping> <http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#ParmesanTopping>)
+
+# Class: <http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#MushroomTopping> (<http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#MushroomTopping>)
+
+SubClassOf(<http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#MushroomTopping> <http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#VegetableTopping>)
+
+# Class: <http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#NamedPizza> (<http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#NamedPizza>)
+
+SubClassOf(<http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#NamedPizza> <http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#Pizza>)
+
+# Class: <http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#OliveTopping> (<http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#OliveTopping>)
+
+SubClassOf(<http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#OliveTopping> <http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#VegetableTopping>)
+
+# Class: <http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#ParmesanTopping> (<http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#ParmesanTopping>)
+
+SubClassOf(<http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#ParmesanTopping> <http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#CheeseTopping>)
+
+# Class: <http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#PepperTopping> (<http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#PepperTopping>)
+
+SubClassOf(<http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#PepperTopping> <http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#VegetableTopping>)
+
+# Class: <http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#PepperoniTopping> (<http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#PepperoniTopping>)
+
+SubClassOf(<http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#PepperoniTopping> <http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#MeatTopping>)
+
+# Class: <http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#Pizza> (<http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#Pizza>)
+
+SubClassOf(<http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#Pizza> ObjectSomeValuesFrom(<http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#hasBase> <http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#PizzaBase>))
+SubClassOf(<http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#Pizza> ObjectSomeValuesFrom(<http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#hasTopping> <http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#PizzaTopping>))
+
+# Class: <http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#PizzaBase> (<http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#PizzaBase>)
+
+
+# Class: <http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#PizzaTopping> (<http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#PizzaTopping>)
+
+
+# Class: <http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#PrawnTopping> (<http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#PrawnTopping>)
+
+SubClassOf(<http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#PrawnTopping> <http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#SeafoodTopping>)
+
+# Class: <http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#RedPepperTopping> (<http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#RedPepperTopping>)
+
+SubClassOf(<http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#RedPepperTopping> <http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#PepperTopping>)
+
+# Class: <http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#SalamiTopping> (<http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#SalamiTopping>)
+
+SubClassOf(<http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#SalamiTopping> <http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#MeatTopping>)
+
+# Class: <http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#SeafoodTopping> (<http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#SeafoodTopping>)
+
+SubClassOf(<http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#SeafoodTopping> <http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#PizzaTopping>)
+
+# Class: <http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#SohoPizza> (<http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#SohoPizza>)
+
+AnnotationAssertion(rdfs:comment <http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#SohoPizza> "A partir de la pizza Margarita, añadiendo queso parmesano y aceitunas.")
+SubClassOf(<http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#SohoPizza> <http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#NamedPizza>)
+SubClassOf(<http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#SohoPizza> ObjectSomeValuesFrom(<http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#hasTopping> <http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#MozzarellaTopping>))
+SubClassOf(<http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#SohoPizza> ObjectSomeValuesFrom(<http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#hasTopping> <http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#OliveTopping>))
+SubClassOf(<http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#SohoPizza> ObjectSomeValuesFrom(<http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#hasTopping> <http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#ParmesanTopping>))
+SubClassOf(<http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#SohoPizza> ObjectSomeValuesFrom(<http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#hasTopping> <http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#TomatoTopping>))
+
+# Class: <http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#SpicyBeefTopping> (<http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#SpicyBeefTopping>)
+
+SubClassOf(<http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#SpicyBeefTopping> <http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#MeatTopping>)
+
+# Class: <http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#ThinAndCrispyBase> (<http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#ThinAndCrispyBase>)
+
+SubClassOf(<http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#ThinAndCrispyBase> <http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#PizzaBase>)
+
+# Class: <http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#TomatoTopping> (<http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#TomatoTopping>)
+
+SubClassOf(<http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#TomatoTopping> <http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#VegetableTopping>)
+
+# Class: <http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#TunaTopping> (<http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#TunaTopping>)
+
+SubClassOf(<http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#TunaTopping> <http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#SeafoodTopping>)
+
+# Class: <http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#VegetableTopping> (<http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#VegetableTopping>)
+
+SubClassOf(<http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#VegetableTopping> <http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#PizzaTopping>)
+
+
+############################
+#   Named Individuals
+############################
+
+# Individual: <http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#DeepPanBase1> (<http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#DeepPanBase1>)
+
+ClassAssertion(<http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#DeepPanBase> <http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#DeepPanBase1>)
+
+# Individual: <http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#Pizza1> (<http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#Pizza1>)
+
+ClassAssertion(<http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#Pizza> <http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#Pizza1>)
+ObjectPropertyAssertion(<http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#hasBase> <http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#Pizza1> <http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#DeepPanBase1>)
+
+
+DisjointClasses(<http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#AmericanaPizza> <http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#DeepPanBase> <http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#MargheritaPizza> <http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#SohoPizza>)
+DisjointClasses(<http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#AnchovyTopping> <http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#PrawnTopping> <http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#TunaTopping>)
+DisjointClasses(<http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#CaperTopping> <http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#MushroomTopping> <http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#OliveTopping> <http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#PepperTopping> <http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#TomatoTopping>)
+DisjointClasses(<http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#CheeseTopping> <http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#MeatTopping> <http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#SeafoodTopping> <http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#VegetableTopping>)
+DisjointClasses(<http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#GreenPepperTopping> <http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#JalapenoPepperTopping> <http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#RedPepperTopping>)
+DisjointClasses(<http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#HamTopping> <http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#PepperoniTopping> <http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#SalamiTopping> <http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#SpicyBeefTopping>)
+DisjointClasses(<http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#Pizza> <http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#PizzaBase> <http://www.semanticweb.org/calonso/ontologies/2024-25/lab/pizza1#PizzaTopping>)
+)

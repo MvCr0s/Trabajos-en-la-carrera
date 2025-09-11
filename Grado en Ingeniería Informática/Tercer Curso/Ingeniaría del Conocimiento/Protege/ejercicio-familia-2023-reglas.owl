@@ -1,0 +1,348 @@
+Prefix(:=<http://www.semanticweb.org/sergg/ontologies/2021/10/familiasv1#>)
+Prefix(owl:=<http://www.w3.org/2002/07/owl#>)
+Prefix(rdf:=<http://www.w3.org/1999/02/22-rdf-syntax-ns#>)
+Prefix(xml:=<http://www.w3.org/XML/1998/namespace>)
+Prefix(xsd:=<http://www.w3.org/2001/XMLSchema#>)
+Prefix(rdfs:=<http://www.w3.org/2000/01/rdf-schema#>)
+Prefix(swrl:=<http://www.w3.org/2003/11/swrl#>)
+Prefix(swrla:=<http://swrl.stanford.edu/ontologies/3.3/swrla.owl#>)
+Prefix(swrlb:=<http://www.w3.org/2003/11/swrlb#>)
+Prefix(familiasv1:=<http://www.semanticweb.org/sergg/ontologies/2021/10/familiasv1#>)
+Prefix(familiasv2:=<http://www.semanticweb.org/sergg/ontologies/2021/10/familiasv2#>)
+
+
+Ontology(<http://www.semanticweb.org/sergg/ontologies/2021/10/familiasv2>
+
+Declaration(Class(familiasv2:Abuela))
+Declaration(Class(familiasv2:Abuelo))
+Declaration(Class(familiasv2:Antecesor))
+Declaration(Class(familiasv2:Hija))
+Declaration(Class(familiasv2:Hijo))
+Declaration(Class(familiasv2:Madre))
+Declaration(Class(familiasv2:MenorDeEdad))
+Declaration(Class(familiasv2:Padre))
+Declaration(Class(familiasv2:Persona))
+Declaration(Class(familiasv2:PersonaConDosHijosExactamente))
+Declaration(Class(familiasv2:PersonaDeFamiliaNumerosa))
+Declaration(Class(familiasv2:PersonaEmparejada))
+Declaration(Class(familiasv2:PersonaEmparejadaConHijos))
+Declaration(Class(familiasv2:Sexo))
+Declaration(Class(familiasv2:TerceraEdad))
+Declaration(Class(familiasv2:Tio))
+Declaration(ObjectProperty(familiasv2:esAbuelaDe))
+Declaration(ObjectProperty(familiasv2:esAbueloDe))
+Declaration(ObjectProperty(familiasv2:esAntecesorDe))
+Declaration(ObjectProperty(familiasv2:esDescendienteDe))
+Declaration(ObjectProperty(familiasv2:esHermanaDe))
+Declaration(ObjectProperty(familiasv2:esHermanoDe))
+Declaration(ObjectProperty(familiasv2:esHijaDe))
+Declaration(ObjectProperty(familiasv2:esHijoDe))
+Declaration(ObjectProperty(familiasv2:esMadreDe))
+Declaration(ObjectProperty(familiasv2:esPadreDe))
+Declaration(ObjectProperty(familiasv2:esParejaDe))
+Declaration(ObjectProperty(familiasv2:esProgenitorInmediatoDe))
+Declaration(ObjectProperty(familiasv2:esTioDe))
+Declaration(ObjectProperty(familiasv2:tieneHermanamientoCon))
+Declaration(ObjectProperty(familiasv2:tieneSexo))
+Declaration(DataProperty(familiasv2:tieneEdad))
+Declaration(NamedIndividual(familiasv2:Eugenia))
+Declaration(NamedIndividual(familiasv2:Juan))
+Declaration(NamedIndividual(familiasv2:Lucia))
+Declaration(NamedIndividual(familiasv2:Luis))
+Declaration(NamedIndividual(familiasv2:Manuel))
+Declaration(NamedIndividual(familiasv2:Maria))
+Declaration(NamedIndividual(familiasv2:Pedro))
+Declaration(NamedIndividual(familiasv2:Sandra))
+Declaration(NamedIndividual(familiasv2:hombre))
+Declaration(NamedIndividual(familiasv2:mujer))
+Declaration(AnnotationProperty(swrla:isRuleEnabled))
+
+############################
+#   Object Properties
+############################
+
+# Object Property: familiasv2:esAbuelaDe (familiasv2:esAbuelaDe)
+
+SubObjectPropertyOf(familiasv2:esAbuelaDe familiasv2:esAntecesorDe)
+ObjectPropertyDomain(familiasv2:esAbuelaDe familiasv2:Persona)
+ObjectPropertyDomain(familiasv2:esAbuelaDe ObjectHasValue(familiasv2:tieneSexo familiasv2:mujer))
+ObjectPropertyRange(familiasv2:esAbuelaDe familiasv2:Persona)
+
+# Object Property: familiasv2:esAbueloDe (familiasv2:esAbueloDe)
+
+SubObjectPropertyOf(familiasv2:esAbueloDe familiasv2:esAntecesorDe)
+ObjectPropertyDomain(familiasv2:esAbueloDe familiasv2:Persona)
+ObjectPropertyDomain(familiasv2:esAbueloDe ObjectHasValue(familiasv2:tieneSexo familiasv2:hombre))
+ObjectPropertyRange(familiasv2:esAbueloDe familiasv2:Persona)
+
+# Object Property: familiasv2:esAntecesorDe (familiasv2:esAntecesorDe)
+
+SubObjectPropertyOf(familiasv2:esAntecesorDe owl:topObjectProperty)
+InverseObjectProperties(familiasv2:esAntecesorDe familiasv2:esDescendienteDe)
+TransitiveObjectProperty(familiasv2:esAntecesorDe)
+ObjectPropertyDomain(familiasv2:esAntecesorDe familiasv2:Persona)
+ObjectPropertyRange(familiasv2:esAntecesorDe familiasv2:Persona)
+
+# Object Property: familiasv2:esDescendienteDe (familiasv2:esDescendienteDe)
+
+SubObjectPropertyOf(familiasv2:esDescendienteDe owl:topObjectProperty)
+TransitiveObjectProperty(familiasv2:esDescendienteDe)
+ObjectPropertyDomain(familiasv2:esDescendienteDe familiasv2:Persona)
+ObjectPropertyRange(familiasv2:esDescendienteDe familiasv2:Persona)
+
+# Object Property: familiasv2:esHermanaDe (familiasv2:esHermanaDe)
+
+SubObjectPropertyOf(familiasv2:esHermanaDe familiasv2:tieneHermanamientoCon)
+ObjectPropertyDomain(familiasv2:esHermanaDe familiasv2:Persona)
+ObjectPropertyDomain(familiasv2:esHermanaDe ObjectHasValue(familiasv2:tieneSexo familiasv2:mujer))
+ObjectPropertyRange(familiasv2:esHermanaDe familiasv2:Persona)
+
+# Object Property: familiasv2:esHermanoDe (familiasv2:esHermanoDe)
+
+SubObjectPropertyOf(familiasv2:esHermanoDe familiasv2:tieneHermanamientoCon)
+ObjectPropertyDomain(familiasv2:esHermanoDe familiasv2:Persona)
+ObjectPropertyDomain(familiasv2:esHermanoDe ObjectHasValue(familiasv2:tieneSexo familiasv2:hombre))
+ObjectPropertyRange(familiasv2:esHermanoDe familiasv2:Persona)
+
+# Object Property: familiasv2:esHijaDe (familiasv2:esHijaDe)
+
+AnnotationAssertion(rdfs:comment familiasv2:esHijaDe "esHijaDe representa la relación de una persona con género femenino y uno de sus progenitores.
+
+Esta propiedad NO puede ser Funcional, porque se puede relacionar con el padre y la madre, que son dos individuos diferentes.
+
+Esta propiedad NO puede ser Transitiva, porque solamente se es hija del antecesor inmediato.")
+SubObjectPropertyOf(familiasv2:esHijaDe familiasv2:esDescendienteDe)
+ObjectPropertyDomain(familiasv2:esHijaDe familiasv2:Persona)
+ObjectPropertyDomain(familiasv2:esHijaDe ObjectHasValue(familiasv2:tieneSexo familiasv2:mujer))
+ObjectPropertyRange(familiasv2:esHijaDe familiasv2:Persona)
+
+# Object Property: familiasv2:esHijoDe (familiasv2:esHijoDe)
+
+AnnotationAssertion(rdfs:comment familiasv2:esHijoDe "esHijoDe representa la relación de una persona con género femenino y uno de sus progenitores.
+
+Esta propiedad NO puede ser Funcional, porque se puede relacionar con el padre y la madre, que son dos individuos diferentes.
+
+Esta propiedad NO puede ser Transitiva, porque solamente se es hija del antecesor inmediato.")
+SubObjectPropertyOf(familiasv2:esHijoDe familiasv2:esDescendienteDe)
+ObjectPropertyDomain(familiasv2:esHijoDe familiasv2:Persona)
+ObjectPropertyDomain(familiasv2:esHijoDe ObjectHasValue(familiasv2:tieneSexo familiasv2:hombre))
+ObjectPropertyRange(familiasv2:esHijoDe familiasv2:Persona)
+
+# Object Property: familiasv2:esMadreDe (familiasv2:esMadreDe)
+
+SubObjectPropertyOf(familiasv2:esMadreDe familiasv2:esProgenitorInmediatoDe)
+ObjectPropertyDomain(familiasv2:esMadreDe familiasv2:Persona)
+ObjectPropertyDomain(familiasv2:esMadreDe ObjectHasValue(familiasv2:tieneSexo familiasv2:mujer))
+ObjectPropertyRange(familiasv2:esMadreDe familiasv2:Persona)
+
+# Object Property: familiasv2:esPadreDe (familiasv2:esPadreDe)
+
+SubObjectPropertyOf(familiasv2:esPadreDe familiasv2:esProgenitorInmediatoDe)
+ObjectPropertyDomain(familiasv2:esPadreDe familiasv2:Persona)
+ObjectPropertyDomain(familiasv2:esPadreDe ObjectHasValue(familiasv2:tieneSexo familiasv2:hombre))
+ObjectPropertyRange(familiasv2:esPadreDe familiasv2:Persona)
+
+# Object Property: familiasv2:esParejaDe (familiasv2:esParejaDe)
+
+SymmetricObjectProperty(familiasv2:esParejaDe)
+ObjectPropertyDomain(familiasv2:esParejaDe familiasv2:Persona)
+ObjectPropertyRange(familiasv2:esParejaDe familiasv2:Persona)
+
+# Object Property: familiasv2:esProgenitorInmediatoDe (familiasv2:esProgenitorInmediatoDe)
+
+SubObjectPropertyOf(familiasv2:esProgenitorInmediatoDe familiasv2:esAntecesorDe)
+
+# Object Property: familiasv2:esTioDe (familiasv2:esTioDe)
+
+SubObjectPropertyOf(familiasv2:esTioDe owl:topObjectProperty)
+ObjectPropertyDomain(familiasv2:esTioDe familiasv2:Persona)
+ObjectPropertyDomain(familiasv2:esTioDe ObjectHasValue(familiasv2:tieneSexo familiasv2:hombre))
+ObjectPropertyRange(familiasv2:esTioDe familiasv2:Persona)
+
+# Object Property: familiasv2:tieneHermanamientoCon (familiasv2:tieneHermanamientoCon)
+
+SubObjectPropertyOf(familiasv2:tieneHermanamientoCon owl:topObjectProperty)
+SymmetricObjectProperty(familiasv2:tieneHermanamientoCon)
+ObjectPropertyDomain(familiasv2:tieneHermanamientoCon familiasv2:Persona)
+ObjectPropertyRange(familiasv2:tieneHermanamientoCon familiasv2:Persona)
+
+# Object Property: familiasv2:tieneSexo (familiasv2:tieneSexo)
+
+SubObjectPropertyOf(familiasv2:tieneSexo owl:topObjectProperty)
+FunctionalObjectProperty(familiasv2:tieneSexo)
+ObjectPropertyDomain(familiasv2:tieneSexo familiasv2:Persona)
+ObjectPropertyRange(familiasv2:tieneSexo familiasv2:Sexo)
+
+
+############################
+#   Data Properties
+############################
+
+# Data Property: familiasv2:tieneEdad (familiasv2:tieneEdad)
+
+SubDataPropertyOf(familiasv2:tieneEdad owl:topDataProperty)
+FunctionalDataProperty(familiasv2:tieneEdad)
+DataPropertyDomain(familiasv2:tieneEdad familiasv2:Persona)
+DataPropertyRange(familiasv2:tieneEdad xsd:integer)
+
+
+
+############################
+#   Classes
+############################
+
+# Class: familiasv2:Abuela (familiasv2:Abuela)
+
+EquivalentClasses(familiasv2:Abuela ObjectIntersectionOf(familiasv2:Persona ObjectSomeValuesFrom(familiasv2:esAbuelaDe familiasv2:Persona)))
+
+# Class: familiasv2:Abuelo (familiasv2:Abuelo)
+
+EquivalentClasses(familiasv2:Abuelo ObjectIntersectionOf(familiasv2:Persona ObjectSomeValuesFrom(familiasv2:esAbueloDe familiasv2:Persona)))
+
+# Class: familiasv2:Antecesor (familiasv2:Antecesor)
+
+EquivalentClasses(familiasv2:Antecesor ObjectIntersectionOf(familiasv2:Persona ObjectSomeValuesFrom(familiasv2:esAntecesorDe familiasv2:Persona)))
+
+# Class: familiasv2:Hija (familiasv2:Hija)
+
+EquivalentClasses(familiasv2:Hija ObjectIntersectionOf(familiasv2:Persona ObjectSomeValuesFrom(familiasv2:esHijaDe familiasv2:Persona)))
+
+# Class: familiasv2:Hijo (familiasv2:Hijo)
+
+EquivalentClasses(familiasv2:Hijo ObjectIntersectionOf(familiasv2:Persona ObjectSomeValuesFrom(familiasv2:esHijoDe familiasv2:Persona)))
+
+# Class: familiasv2:Madre (familiasv2:Madre)
+
+EquivalentClasses(familiasv2:Madre ObjectIntersectionOf(familiasv2:Persona ObjectSomeValuesFrom(familiasv2:esMadreDe familiasv2:Persona)))
+
+# Class: familiasv2:MenorDeEdad (familiasv2:MenorDeEdad)
+
+EquivalentClasses(familiasv2:MenorDeEdad ObjectIntersectionOf(familiasv2:Persona DataSomeValuesFrom(familiasv2:tieneEdad DatatypeRestriction(xsd:integer xsd:maxExclusive "18"^^xsd:integer))))
+
+# Class: familiasv2:Padre (familiasv2:Padre)
+
+EquivalentClasses(familiasv2:Padre ObjectIntersectionOf(familiasv2:Persona ObjectSomeValuesFrom(familiasv2:esPadreDe familiasv2:Persona)))
+
+# Class: familiasv2:Persona (familiasv2:Persona)
+
+DisjointClasses(familiasv2:Persona familiasv2:Sexo)
+
+# Class: familiasv2:PersonaConDosHijosExactamente (familiasv2:PersonaConDosHijosExactamente)
+
+AnnotationAssertion(rdfs:comment familiasv2:PersonaConDosHijosExactamente "Para que esta clase genere inferencias, en los Progenitores deben especificarse no solo las relaciones de paterniedad con cada hijo, sino que además es necesario definir el tipo: esAntecesorDe only {hijo1, hijo2)")
+EquivalentClasses(familiasv2:PersonaConDosHijosExactamente ObjectIntersectionOf(familiasv2:Persona ObjectUnionOf(ObjectExactCardinality(2 familiasv2:esMadreDe familiasv2:Persona) ObjectExactCardinality(2 familiasv2:esPadreDe familiasv2:Persona))))
+
+# Class: familiasv2:PersonaDeFamiliaNumerosa (familiasv2:PersonaDeFamiliaNumerosa)
+
+AnnotationAssertion(rdfs:comment familiasv2:PersonaDeFamiliaNumerosa "Los miembros de una familia numerosa son los padres que tienen al menos 3 hijos y los hijos que tienen al menos 2 hermanos")
+EquivalentClasses(familiasv2:PersonaDeFamiliaNumerosa ObjectIntersectionOf(familiasv2:Persona ObjectUnionOf(ObjectMinCardinality(3 familiasv2:esProgenitorInmediatoDe familiasv2:Persona) ObjectMinCardinality(2 familiasv2:tieneHermanamientoCon familiasv2:Persona))))
+
+# Class: familiasv2:PersonaEmparejada (familiasv2:PersonaEmparejada)
+
+EquivalentClasses(familiasv2:PersonaEmparejada ObjectIntersectionOf(familiasv2:Persona ObjectSomeValuesFrom(familiasv2:esParejaDe familiasv2:Persona)))
+
+# Class: familiasv2:PersonaEmparejadaConHijos (familiasv2:PersonaEmparejadaConHijos)
+
+EquivalentClasses(familiasv2:PersonaEmparejadaConHijos ObjectIntersectionOf(familiasv2:Persona ObjectSomeValuesFrom(familiasv2:esAntecesorDe familiasv2:Persona) ObjectSomeValuesFrom(familiasv2:esParejaDe familiasv2:Persona)))
+
+# Class: familiasv2:Sexo (familiasv2:Sexo)
+
+EquivalentClasses(familiasv2:Sexo ObjectOneOf(familiasv2:hombre familiasv2:mujer))
+
+# Class: familiasv2:TerceraEdad (familiasv2:TerceraEdad)
+
+EquivalentClasses(familiasv2:TerceraEdad ObjectIntersectionOf(familiasv2:Persona DataSomeValuesFrom(familiasv2:tieneEdad DatatypeRestriction(xsd:integer xsd:minExclusive "65"^^xsd:integer))))
+
+# Class: familiasv2:Tio (familiasv2:Tio)
+
+AnnotationAssertion(rdfs:comment familiasv2:Tio "Para que esta clase genere inferencias, debe implementarse una regla que genere la relación esTioDe, en base a las relaciones de paternidad y hermandad")
+EquivalentClasses(familiasv2:Tio ObjectIntersectionOf(familiasv2:Persona ObjectUnionOf(familiasv2:Padre ObjectSomeValuesFrom(familiasv2:esHermanoDe familiasv2:Madre))))
+
+
+############################
+#   Named Individuals
+############################
+
+# Individual: familiasv2:Eugenia (familiasv2:Eugenia)
+
+ClassAssertion(familiasv2:Persona familiasv2:Eugenia)
+ClassAssertion(ObjectAllValuesFrom(familiasv2:esMadreDe ObjectOneOf(familiasv2:Lucia familiasv2:Manuel)) familiasv2:Eugenia)
+ObjectPropertyAssertion(familiasv2:esMadreDe familiasv2:Eugenia familiasv2:Lucia)
+ObjectPropertyAssertion(familiasv2:esMadreDe familiasv2:Eugenia familiasv2:Manuel)
+ObjectPropertyAssertion(familiasv2:esParejaDe familiasv2:Eugenia familiasv2:Pedro)
+DataPropertyAssertion(familiasv2:tieneEdad familiasv2:Eugenia "72"^^xsd:integer)
+
+# Individual: familiasv2:Juan (familiasv2:Juan)
+
+ClassAssertion(familiasv2:Persona familiasv2:Juan)
+ObjectPropertyAssertion(familiasv2:esPadreDe familiasv2:Juan familiasv2:Luis)
+ObjectPropertyAssertion(familiasv2:esPadreDe familiasv2:Juan familiasv2:Maria)
+ObjectPropertyAssertion(familiasv2:esPadreDe familiasv2:Juan familiasv2:Sandra)
+ObjectPropertyAssertion(familiasv2:esParejaDe familiasv2:Juan familiasv2:Lucia)
+ObjectPropertyAssertion(familiasv2:tieneSexo familiasv2:Juan familiasv2:hombre)
+DataPropertyAssertion(familiasv2:tieneEdad familiasv2:Juan "52"^^xsd:integer)
+
+# Individual: familiasv2:Lucia (familiasv2:Lucia)
+
+ClassAssertion(familiasv2:Persona familiasv2:Lucia)
+ObjectPropertyAssertion(familiasv2:esHijaDe familiasv2:Lucia familiasv2:Eugenia)
+ObjectPropertyAssertion(familiasv2:esHijaDe familiasv2:Lucia familiasv2:Pedro)
+ObjectPropertyAssertion(familiasv2:esMadreDe familiasv2:Lucia familiasv2:Luis)
+ObjectPropertyAssertion(familiasv2:esMadreDe familiasv2:Lucia familiasv2:Maria)
+ObjectPropertyAssertion(familiasv2:esMadreDe familiasv2:Lucia familiasv2:Sandra)
+DataPropertyAssertion(familiasv2:tieneEdad familiasv2:Lucia "49"^^xsd:integer)
+
+# Individual: familiasv2:Luis (familiasv2:Luis)
+
+ClassAssertion(familiasv2:Persona familiasv2:Luis)
+ObjectPropertyAssertion(familiasv2:esHermanoDe familiasv2:Luis familiasv2:Maria)
+ObjectPropertyAssertion(familiasv2:esHijoDe familiasv2:Luis familiasv2:Juan)
+ObjectPropertyAssertion(familiasv2:esHijoDe familiasv2:Luis familiasv2:Lucia)
+DataPropertyAssertion(familiasv2:tieneEdad familiasv2:Luis "24"^^xsd:integer)
+
+# Individual: familiasv2:Manuel (familiasv2:Manuel)
+
+ClassAssertion(familiasv2:Persona familiasv2:Manuel)
+ObjectPropertyAssertion(familiasv2:esHermanoDe familiasv2:Manuel familiasv2:Lucia)
+ObjectPropertyAssertion(familiasv2:esHijoDe familiasv2:Manuel familiasv2:Eugenia)
+ObjectPropertyAssertion(familiasv2:esHijoDe familiasv2:Manuel familiasv2:Pedro)
+DataPropertyAssertion(familiasv2:tieneEdad familiasv2:Manuel "47"^^xsd:integer)
+
+# Individual: familiasv2:Maria (familiasv2:Maria)
+
+ClassAssertion(familiasv2:Persona familiasv2:Maria)
+ObjectPropertyAssertion(familiasv2:esHijaDe familiasv2:Maria familiasv2:Lucia)
+DataPropertyAssertion(familiasv2:tieneEdad familiasv2:Maria "17"^^xsd:integer)
+
+# Individual: familiasv2:Pedro (familiasv2:Pedro)
+
+ClassAssertion(familiasv2:Persona familiasv2:Pedro)
+ClassAssertion(ObjectAllValuesFrom(familiasv2:esPadreDe ObjectOneOf(familiasv2:Lucia familiasv2:Manuel)) familiasv2:Pedro)
+ObjectPropertyAssertion(familiasv2:esPadreDe familiasv2:Pedro familiasv2:Lucia)
+ObjectPropertyAssertion(familiasv2:esPadreDe familiasv2:Pedro familiasv2:Manuel)
+DataPropertyAssertion(familiasv2:tieneEdad familiasv2:Pedro "75"^^xsd:integer)
+
+# Individual: familiasv2:Sandra (familiasv2:Sandra)
+
+ClassAssertion(familiasv2:Persona familiasv2:Sandra)
+ObjectPropertyAssertion(familiasv2:esHermanaDe familiasv2:Sandra familiasv2:Luis)
+ObjectPropertyAssertion(familiasv2:esHermanaDe familiasv2:Sandra familiasv2:Maria)
+ObjectPropertyAssertion(familiasv2:esHijaDe familiasv2:Sandra familiasv2:Juan)
+ObjectPropertyAssertion(familiasv2:esHijaDe familiasv2:Sandra familiasv2:Lucia)
+DataPropertyAssertion(familiasv2:tieneEdad familiasv2:Sandra "16"^^xsd:integer)
+
+# Individual: familiasv2:hombre (familiasv2:hombre)
+
+ClassAssertion(familiasv2:Sexo familiasv2:hombre)
+
+# Individual: familiasv2:mujer (familiasv2:mujer)
+
+ClassAssertion(familiasv2:Sexo familiasv2:mujer)
+
+
+DifferentIndividuals(familiasv2:Eugenia familiasv2:Juan familiasv2:Lucia familiasv2:Luis familiasv2:Manuel familiasv2:Maria familiasv2:Pedro familiasv2:Sandra)
+DifferentIndividuals(familiasv2:hombre familiasv2:mujer)
+DLSafeRule(Annotation(swrla:isRuleEnabled "true"^^xsd:boolean) Annotation(rdfs:comment "") Annotation(rdfs:label "ReglaAbuelo") Body(ClassAtom(familiasv2:Persona Variable(familiasv1:p1)) ClassAtom(familiasv2:Persona Variable(familiasv1:p2)) ClassAtom(familiasv2:Persona Variable(familiasv1:p3)) ObjectPropertyAtom(familiasv2:tieneSexo Variable(familiasv1:p3) familiasv2:hombre) ObjectPropertyAtom(familiasv2:esProgenitorInmediatoDe Variable(familiasv1:p2) Variable(familiasv1:p1)) ObjectPropertyAtom(familiasv2:esProgenitorInmediatoDe Variable(familiasv1:p3) Variable(familiasv1:p2)))Head(ObjectPropertyAtom(familiasv2:esAbueloDe Variable(familiasv1:p3) Variable(familiasv1:p1))))
+DLSafeRule(Annotation(swrla:isRuleEnabled "true"^^xsd:boolean) Annotation(rdfs:comment "") Annotation(rdfs:label "ReglaAbuela") Body(ClassAtom(familiasv2:Persona Variable(familiasv1:p1)) ClassAtom(familiasv2:Persona Variable(familiasv1:p2)) ClassAtom(familiasv2:Persona Variable(familiasv1:p3)) ObjectPropertyAtom(familiasv2:tieneSexo Variable(familiasv1:p3) familiasv2:mujer) ObjectPropertyAtom(familiasv2:esProgenitorInmediatoDe Variable(familiasv1:p2) Variable(familiasv1:p1)) ObjectPropertyAtom(familiasv2:esProgenitorInmediatoDe Variable(familiasv1:p3) Variable(familiasv1:p2)))Head(ObjectPropertyAtom(familiasv2:esAbuelaDe Variable(familiasv1:p3) Variable(familiasv1:p1))))
+DLSafeRule(Annotation(swrla:isRuleEnabled "true"^^xsd:boolean) Annotation(rdfs:comment "") Annotation(rdfs:label "ReglaTio") Body(ClassAtom(familiasv2:Persona Variable(familiasv1:p1)) ClassAtom(familiasv2:Persona Variable(familiasv1:p2)) ClassAtom(familiasv2:Persona Variable(familiasv1:p3)) ObjectPropertyAtom(familiasv2:tieneSexo Variable(familiasv1:p3) familiasv2:hombre) ObjectPropertyAtom(familiasv2:tieneHermanamientoCon Variable(familiasv1:p2) Variable(familiasv1:p3)) ObjectPropertyAtom(familiasv2:esProgenitorInmediatoDe Variable(familiasv1:p2) Variable(familiasv1:p1)))Head(ObjectPropertyAtom(familiasv2:esTioDe Variable(familiasv1:p3) Variable(familiasv1:p1))))
+)

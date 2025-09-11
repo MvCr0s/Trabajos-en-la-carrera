@@ -1,0 +1,248 @@
+Prefix(:=<http://www.semanticweb.org/sergg/ontologies/2021/11/cervezas#>)
+Prefix(owl:=<http://www.w3.org/2002/07/owl#>)
+Prefix(rdf:=<http://www.w3.org/1999/02/22-rdf-syntax-ns#>)
+Prefix(xml:=<http://www.w3.org/XML/1998/namespace>)
+Prefix(xsd:=<http://www.w3.org/2001/XMLSchema#>)
+Prefix(rdfs:=<http://www.w3.org/2000/01/rdf-schema#>)
+Prefix(cervezas:=<http://www.semanticweb.org/sergg/ontologies/2021/11/cervezas#>)
+
+
+Ontology(<http://www.semanticweb.org/sergg/ontologies/2021/11/cervezas>
+
+Declaration(Class(cervezas:Cerveza))
+Declaration(Class(cervezas:CervezaDeMenosDe5Grados))
+Declaration(Class(cervezas:CervezaMahou))
+Declaration(Class(cervezas:CervezaQueSeFabricaEnElPaisEspana))
+Declaration(Class(cervezas:Fabrica))
+Declaration(Class(cervezas:FabricaDe2CervezasDistintas))
+Declaration(Class(cervezas:FabricaDeCervezaRubia))
+Declaration(Class(cervezas:Marca))
+Declaration(Class(cervezas:MarcaConAlMenos2CervezasDistintas))
+Declaration(Class(cervezas:Pais))
+Declaration(Class(cervezas:PaisFabricanteDeAlMenos2CervezasRubias))
+Declaration(Class(cervezas:TipoDeCerveza))
+Declaration(ObjectProperty(cervezas:esDeLaMarca))
+Declaration(ObjectProperty(cervezas:esDelTipo))
+Declaration(ObjectProperty(cervezas:estaEnPais))
+Declaration(ObjectProperty(cervezas:fabricaLaCerveza))
+Declaration(ObjectProperty(cervezas:fabricaPara))
+Declaration(ObjectProperty(cervezas:seFabricaEn))
+Declaration(ObjectProperty(cervezas:seFabricaEnElPais))
+Declaration(ObjectProperty(cervezas:tieneFabricaEn))
+Declaration(ObjectProperty(cervezas:tieneLaCerveza))
+Declaration(ObjectProperty(cervezas:tieneLaFabrica))
+Declaration(DataProperty(cervezas:tieneGradosDeAlcohol))
+Declaration(NamedIndividual(cervezas:Espana))
+Declaration(NamedIndividual(cervezas:Fabrica_De_Malaga))
+Declaration(NamedIndividual(cervezas:Fabrica_De_Montemayor))
+Declaration(NamedIndividual(cervezas:Fabrica_de_Alovera))
+Declaration(NamedIndividual(cervezas:Fabrica_de_Dublin))
+Declaration(NamedIndividual(cervezas:Guinness))
+Declaration(NamedIndividual(cervezas:GuinnessStout))
+Declaration(NamedIndividual(cervezas:Irlanda))
+Declaration(NamedIndividual(cervezas:Mahou))
+Declaration(NamedIndividual(cervezas:Mahou5Estrellas))
+Declaration(NamedIndividual(cervezas:MahouClasica))
+Declaration(NamedIndividual(cervezas:Milana))
+Declaration(NamedIndividual(cervezas:MilanaTostada))
+Declaration(NamedIndividual(cervezas:Negra))
+Declaration(NamedIndividual(cervezas:Rubia))
+Declaration(NamedIndividual(cervezas:Tostada))
+############################
+#   Object Properties
+############################
+
+# Object Property: cervezas:esDeLaMarca (cervezas:esDeLaMarca)
+
+SubObjectPropertyOf(cervezas:esDeLaMarca owl:topObjectProperty)
+InverseObjectProperties(cervezas:esDeLaMarca cervezas:tieneLaCerveza)
+FunctionalObjectProperty(cervezas:esDeLaMarca)
+ObjectPropertyDomain(cervezas:esDeLaMarca cervezas:Cerveza)
+ObjectPropertyRange(cervezas:esDeLaMarca cervezas:Marca)
+
+# Object Property: cervezas:esDelTipo (cervezas:esDelTipo)
+
+FunctionalObjectProperty(cervezas:esDelTipo)
+ObjectPropertyDomain(cervezas:esDelTipo cervezas:Cerveza)
+ObjectPropertyRange(cervezas:esDelTipo cervezas:TipoDeCerveza)
+
+# Object Property: cervezas:estaEnPais (cervezas:estaEnPais)
+
+InverseObjectProperties(cervezas:estaEnPais cervezas:tieneLaFabrica)
+FunctionalObjectProperty(cervezas:estaEnPais)
+ObjectPropertyDomain(cervezas:estaEnPais cervezas:Fabrica)
+ObjectPropertyRange(cervezas:estaEnPais cervezas:Pais)
+
+# Object Property: cervezas:fabricaLaCerveza (cervezas:fabricaLaCerveza)
+
+InverseObjectProperties(cervezas:fabricaLaCerveza cervezas:seFabricaEn)
+
+# Object Property: cervezas:fabricaPara (cervezas:fabricaPara)
+
+InverseObjectProperties(cervezas:fabricaPara cervezas:tieneFabricaEn)
+ObjectPropertyDomain(cervezas:fabricaPara cervezas:Fabrica)
+ObjectPropertyRange(cervezas:fabricaPara cervezas:Marca)
+
+# Object Property: cervezas:seFabricaEn (cervezas:seFabricaEn)
+
+ObjectPropertyDomain(cervezas:seFabricaEn cervezas:Cerveza)
+ObjectPropertyRange(cervezas:seFabricaEn cervezas:Fabrica)
+
+# Object Property: cervezas:seFabricaEnElPais (cervezas:seFabricaEnElPais)
+
+ObjectPropertyDomain(cervezas:seFabricaEnElPais cervezas:Cerveza)
+ObjectPropertyRange(cervezas:seFabricaEnElPais cervezas:Pais)
+
+
+############################
+#   Data Properties
+############################
+
+# Data Property: cervezas:tieneGradosDeAlcohol (cervezas:tieneGradosDeAlcohol)
+
+FunctionalDataProperty(cervezas:tieneGradosDeAlcohol)
+DataPropertyDomain(cervezas:tieneGradosDeAlcohol cervezas:Cerveza)
+DataPropertyRange(cervezas:tieneGradosDeAlcohol xsd:double)
+
+
+
+############################
+#   Classes
+############################
+
+# Class: cervezas:CervezaDeMenosDe5Grados (cervezas:CervezaDeMenosDe5Grados)
+
+EquivalentClasses(cervezas:CervezaDeMenosDe5Grados ObjectIntersectionOf(cervezas:Cerveza DataSomeValuesFrom(cervezas:tieneGradosDeAlcohol DatatypeRestriction(xsd:double xsd:maxExclusive "5.0"^^xsd:double))))
+
+# Class: cervezas:CervezaMahou (cervezas:CervezaMahou)
+
+EquivalentClasses(cervezas:CervezaMahou ObjectIntersectionOf(cervezas:Cerveza ObjectHasValue(cervezas:esDeLaMarca cervezas:Mahou)))
+
+# Class: cervezas:CervezaQueSeFabricaEnElPaisEspana (cervezas:CervezaQueSeFabricaEnElPaisEspana)
+
+EquivalentClasses(cervezas:CervezaQueSeFabricaEnElPaisEspana ObjectIntersectionOf(cervezas:Cerveza ObjectHasValue(cervezas:seFabricaEnElPais cervezas:Espana)))
+
+# Class: cervezas:FabricaDe2CervezasDistintas (cervezas:FabricaDe2CervezasDistintas)
+
+EquivalentClasses(cervezas:FabricaDe2CervezasDistintas ObjectIntersectionOf(cervezas:Fabrica ObjectExactCardinality(2 cervezas:fabricaLaCerveza cervezas:Cerveza)))
+
+# Class: cervezas:FabricaDeCervezaRubia (cervezas:FabricaDeCervezaRubia)
+
+EquivalentClasses(cervezas:FabricaDeCervezaRubia ObjectIntersectionOf(cervezas:Fabrica ObjectSomeValuesFrom(cervezas:fabricaLaCerveza ObjectHasValue(cervezas:esDelTipo cervezas:Rubia))))
+
+# Class: cervezas:MarcaConAlMenos2CervezasDistintas (cervezas:MarcaConAlMenos2CervezasDistintas)
+
+EquivalentClasses(cervezas:MarcaConAlMenos2CervezasDistintas ObjectIntersectionOf(cervezas:Marca ObjectMinCardinality(2 cervezas:tieneLaCerveza cervezas:Cerveza)))
+SubClassOf(cervezas:MarcaConAlMenos2CervezasDistintas cervezas:Marca)
+
+# Class: cervezas:PaisFabricanteDeAlMenos2CervezasRubias (cervezas:PaisFabricanteDeAlMenos2CervezasRubias)
+
+EquivalentClasses(cervezas:PaisFabricanteDeAlMenos2CervezasRubias ObjectIntersectionOf(cervezas:Pais ObjectMinCardinality(2 cervezas:tieneLaFabrica cervezas:FabricaDeCervezaRubia)))
+
+# Class: cervezas:TipoDeCerveza (cervezas:TipoDeCerveza)
+
+EquivalentClasses(cervezas:TipoDeCerveza ObjectOneOf(cervezas:Negra cervezas:Rubia cervezas:Tostada))
+
+
+############################
+#   Named Individuals
+############################
+
+# Individual: cervezas:Espana (cervezas:Espana)
+
+ClassAssertion(cervezas:Pais cervezas:Espana)
+
+# Individual: cervezas:Fabrica_De_Malaga (cervezas:Fabrica_De_Malaga)
+
+ClassAssertion(cervezas:Fabrica cervezas:Fabrica_De_Malaga)
+ObjectPropertyAssertion(cervezas:estaEnPais cervezas:Fabrica_De_Malaga cervezas:Espana)
+ObjectPropertyAssertion(cervezas:fabricaLaCerveza cervezas:Fabrica_De_Malaga cervezas:Mahou5Estrellas)
+ObjectPropertyAssertion(cervezas:fabricaPara cervezas:Fabrica_De_Malaga cervezas:Mahou)
+
+# Individual: cervezas:Fabrica_De_Montemayor (cervezas:Fabrica_De_Montemayor)
+
+ClassAssertion(cervezas:Fabrica cervezas:Fabrica_De_Montemayor)
+ObjectPropertyAssertion(cervezas:estaEnPais cervezas:Fabrica_De_Montemayor cervezas:Espana)
+ObjectPropertyAssertion(cervezas:fabricaLaCerveza cervezas:Fabrica_De_Montemayor cervezas:MilanaTostada)
+ObjectPropertyAssertion(cervezas:fabricaPara cervezas:Fabrica_De_Montemayor cervezas:Milana)
+
+# Individual: cervezas:Fabrica_de_Alovera (cervezas:Fabrica_de_Alovera)
+
+ClassAssertion(cervezas:Fabrica cervezas:Fabrica_de_Alovera)
+ClassAssertion(ObjectAllValuesFrom(cervezas:fabricaLaCerveza ObjectOneOf(cervezas:Mahou5Estrellas cervezas:MahouClasica)) cervezas:Fabrica_de_Alovera)
+ObjectPropertyAssertion(cervezas:estaEnPais cervezas:Fabrica_de_Alovera cervezas:Espana)
+ObjectPropertyAssertion(cervezas:fabricaLaCerveza cervezas:Fabrica_de_Alovera cervezas:Mahou5Estrellas)
+ObjectPropertyAssertion(cervezas:fabricaLaCerveza cervezas:Fabrica_de_Alovera cervezas:MahouClasica)
+ObjectPropertyAssertion(cervezas:fabricaPara cervezas:Fabrica_de_Alovera cervezas:Mahou)
+
+# Individual: cervezas:Fabrica_de_Dublin (cervezas:Fabrica_de_Dublin)
+
+ClassAssertion(cervezas:Fabrica cervezas:Fabrica_de_Dublin)
+ObjectPropertyAssertion(cervezas:estaEnPais cervezas:Fabrica_de_Dublin cervezas:Irlanda)
+ObjectPropertyAssertion(cervezas:fabricaPara cervezas:Fabrica_de_Dublin cervezas:Guinness)
+
+# Individual: cervezas:Guinness (cervezas:Guinness)
+
+ClassAssertion(cervezas:Marca cervezas:Guinness)
+
+# Individual: cervezas:GuinnessStout (cervezas:GuinnessStout)
+
+ClassAssertion(cervezas:Cerveza cervezas:GuinnessStout)
+ObjectPropertyAssertion(cervezas:esDeLaMarca cervezas:GuinnessStout cervezas:Guinness)
+ObjectPropertyAssertion(cervezas:esDelTipo cervezas:GuinnessStout cervezas:Negra)
+ObjectPropertyAssertion(cervezas:seFabricaEn cervezas:GuinnessStout cervezas:Fabrica_de_Dublin)
+DataPropertyAssertion(cervezas:tieneGradosDeAlcohol cervezas:GuinnessStout "4.3"^^xsd:double)
+
+# Individual: cervezas:Irlanda (cervezas:Irlanda)
+
+ClassAssertion(cervezas:Pais cervezas:Irlanda)
+
+# Individual: cervezas:Mahou (cervezas:Mahou)
+
+ClassAssertion(cervezas:Marca cervezas:Mahou)
+
+# Individual: cervezas:Mahou5Estrellas (cervezas:Mahou5Estrellas)
+
+ClassAssertion(cervezas:Cerveza cervezas:Mahou5Estrellas)
+ObjectPropertyAssertion(cervezas:esDeLaMarca cervezas:Mahou5Estrellas cervezas:Mahou)
+ObjectPropertyAssertion(cervezas:esDelTipo cervezas:Mahou5Estrellas cervezas:Rubia)
+DataPropertyAssertion(cervezas:tieneGradosDeAlcohol cervezas:Mahou5Estrellas "5.5"^^xsd:double)
+
+# Individual: cervezas:MahouClasica (cervezas:MahouClasica)
+
+ClassAssertion(cervezas:Cerveza cervezas:MahouClasica)
+ObjectPropertyAssertion(cervezas:esDeLaMarca cervezas:MahouClasica cervezas:Mahou)
+ObjectPropertyAssertion(cervezas:esDelTipo cervezas:MahouClasica cervezas:Rubia)
+DataPropertyAssertion(cervezas:tieneGradosDeAlcohol cervezas:MahouClasica "4.8"^^xsd:double)
+
+# Individual: cervezas:Milana (cervezas:Milana)
+
+ClassAssertion(cervezas:Marca cervezas:Milana)
+
+# Individual: cervezas:MilanaTostada (cervezas:MilanaTostada)
+
+ClassAssertion(cervezas:Cerveza cervezas:MilanaTostada)
+ObjectPropertyAssertion(cervezas:esDeLaMarca cervezas:MilanaTostada cervezas:Milana)
+ObjectPropertyAssertion(cervezas:esDelTipo cervezas:MilanaTostada cervezas:Tostada)
+DataPropertyAssertion(cervezas:tieneGradosDeAlcohol cervezas:MilanaTostada "5.8"^^xsd:double)
+
+# Individual: cervezas:Negra (cervezas:Negra)
+
+ClassAssertion(cervezas:TipoDeCerveza cervezas:Negra)
+
+# Individual: cervezas:Rubia (cervezas:Rubia)
+
+ClassAssertion(cervezas:TipoDeCerveza cervezas:Rubia)
+
+# Individual: cervezas:Tostada (cervezas:Tostada)
+
+ClassAssertion(cervezas:TipoDeCerveza cervezas:Tostada)
+
+
+DifferentIndividuals(cervezas:Espana cervezas:Irlanda)
+DifferentIndividuals(cervezas:Fabrica_De_Malaga cervezas:Fabrica_De_Montemayor cervezas:Fabrica_de_Alovera cervezas:Fabrica_de_Dublin)
+DifferentIndividuals(cervezas:Guinness cervezas:Mahou cervezas:Milana)
+DifferentIndividuals(cervezas:GuinnessStout cervezas:Mahou5Estrellas cervezas:MahouClasica cervezas:MilanaTostada)
+DifferentIndividuals(cervezas:Negra cervezas:Rubia cervezas:Tostada)
+SubObjectPropertyOf(ObjectPropertyChain(cervezas:seFabricaEn cervezas:estaEnPais) cervezas:seFabricaEnElPais)
+)

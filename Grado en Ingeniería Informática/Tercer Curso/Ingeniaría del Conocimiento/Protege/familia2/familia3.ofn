@@ -1,0 +1,284 @@
+Prefix(:=<http://www.semanticweb.org/belar/ontologies/2024/10/untitled-ontology-5/>)
+Prefix(owl:=<http://www.w3.org/2002/07/owl#>)
+Prefix(rdf:=<http://www.w3.org/1999/02/22-rdf-syntax-ns#>)
+Prefix(xml:=<http://www.w3.org/XML/1998/namespace>)
+Prefix(xsd:=<http://www.w3.org/2001/XMLSchema#>)
+Prefix(rdfs:=<http://www.w3.org/2000/01/rdf-schema#>)
+Prefix(untitled-ontology-5:=<http://www.semanticweb.org/belar/ontologies/2024/10/untitled-ontology-5#>)
+
+
+Ontology(<http://www.semanticweb.org/belar/ontologies/2024/10/untitled-ontology-5>
+Annotation(rdfs:comment "Ontology about families.")
+
+Declaration(Class(untitled-ontology-5:Abuelos))
+Declaration(Class(untitled-ontology-5:Antecesor))
+Declaration(Class(untitled-ontology-5:FamiliaNumerosa))
+Declaration(Class(untitled-ontology-5:Madre))
+Declaration(Class(untitled-ontology-5:MayorDe65))
+Declaration(Class(untitled-ontology-5:MenorDeEdad))
+Declaration(Class(untitled-ontology-5:Padre))
+Declaration(Class(untitled-ontology-5:Persona))
+Declaration(Class(untitled-ontology-5:PersonaConPareja))
+Declaration(Class(untitled-ontology-5:PersonaConParejaYDescendencia))
+Declaration(Class(untitled-ontology-5:Progenitor))
+Declaration(Class(untitled-ontology-5:Sexo))
+Declaration(Class(untitled-ontology-5:TieneDosHijos))
+Declaration(Class(untitled-ontology-5:Tios))
+Declaration(ObjectProperty(untitled-ontology-5:esAscendenteDe))
+Declaration(ObjectProperty(untitled-ontology-5:esDescendienteDe))
+Declaration(ObjectProperty(untitled-ontology-5:esHermanoDe))
+Declaration(ObjectProperty(untitled-ontology-5:esHijaDe))
+Declaration(ObjectProperty(untitled-ontology-5:esHijoDe))
+Declaration(ObjectProperty(untitled-ontology-5:esHijoOHijaDe))
+Declaration(ObjectProperty(untitled-ontology-5:esMadreDe))
+Declaration(ObjectProperty(untitled-ontology-5:esPadreDe))
+Declaration(ObjectProperty(untitled-ontology-5:esParejaDe))
+Declaration(ObjectProperty(untitled-ontology-5:esProgenitorDe))
+Declaration(ObjectProperty(untitled-ontology-5:tieneSexo))
+Declaration(DataProperty(untitled-ontology-5:Edad))
+Declaration(NamedIndividual(untitled-ontology-5:Eugenia))
+Declaration(NamedIndividual(untitled-ontology-5:Hombre))
+Declaration(NamedIndividual(untitled-ontology-5:Juan))
+Declaration(NamedIndividual(untitled-ontology-5:Lucia))
+Declaration(NamedIndividual(untitled-ontology-5:Luis))
+Declaration(NamedIndividual(untitled-ontology-5:Manuel))
+Declaration(NamedIndividual(untitled-ontology-5:Maria))
+Declaration(NamedIndividual(untitled-ontology-5:Mujer))
+Declaration(NamedIndividual(untitled-ontology-5:Pedro))
+Declaration(NamedIndividual(untitled-ontology-5:Sandra))
+
+############################
+#   Object Properties
+############################
+
+# Object Property: untitled-ontology-5:esAscendenteDe (untitled-ontology-5:esAscendenteDe)
+
+SubObjectPropertyOf(untitled-ontology-5:esAscendenteDe owl:topObjectProperty)
+InverseObjectProperties(untitled-ontology-5:esAscendenteDe untitled-ontology-5:esDescendienteDe)
+TransitiveObjectProperty(untitled-ontology-5:esAscendenteDe)
+ObjectPropertyDomain(untitled-ontology-5:esAscendenteDe untitled-ontology-5:Antecesor)
+ObjectPropertyRange(untitled-ontology-5:esAscendenteDe untitled-ontology-5:Persona)
+
+# Object Property: untitled-ontology-5:esDescendienteDe (untitled-ontology-5:esDescendienteDe)
+
+SubObjectPropertyOf(untitled-ontology-5:esDescendienteDe owl:topObjectProperty)
+ObjectPropertyDomain(untitled-ontology-5:esDescendienteDe untitled-ontology-5:Persona)
+ObjectPropertyRange(untitled-ontology-5:esDescendienteDe untitled-ontology-5:Antecesor)
+
+# Object Property: untitled-ontology-5:esHermanoDe (untitled-ontology-5:esHermanoDe)
+
+SymmetricObjectProperty(untitled-ontology-5:esHermanoDe)
+ObjectPropertyDomain(untitled-ontology-5:esHermanoDe untitled-ontology-5:Persona)
+ObjectPropertyRange(untitled-ontology-5:esHermanoDe untitled-ontology-5:Persona)
+
+# Object Property: untitled-ontology-5:esHijaDe (untitled-ontology-5:esHijaDe)
+
+SubObjectPropertyOf(untitled-ontology-5:esHijaDe untitled-ontology-5:esDescendienteDe)
+ObjectPropertyDomain(untitled-ontology-5:esHijaDe ObjectIntersectionOf(untitled-ontology-5:Persona ObjectHasValue(untitled-ontology-5:tieneSexo untitled-ontology-5:Mujer)))
+ObjectPropertyRange(untitled-ontology-5:esHijaDe untitled-ontology-5:Persona)
+
+# Object Property: untitled-ontology-5:esHijoDe (untitled-ontology-5:esHijoDe)
+
+SubObjectPropertyOf(untitled-ontology-5:esHijoDe untitled-ontology-5:esDescendienteDe)
+ObjectPropertyDomain(untitled-ontology-5:esHijoDe ObjectIntersectionOf(untitled-ontology-5:Persona ObjectHasValue(untitled-ontology-5:tieneSexo untitled-ontology-5:Hombre)))
+ObjectPropertyRange(untitled-ontology-5:esHijoDe untitled-ontology-5:Persona)
+
+# Object Property: untitled-ontology-5:esHijoOHijaDe (untitled-ontology-5:esHijoOHijaDe)
+
+SubObjectPropertyOf(untitled-ontology-5:esHijoOHijaDe untitled-ontology-5:esDescendienteDe)
+InverseObjectProperties(untitled-ontology-5:esHijoOHijaDe untitled-ontology-5:esProgenitorDe)
+ObjectPropertyDomain(untitled-ontology-5:esHijoOHijaDe untitled-ontology-5:Persona)
+ObjectPropertyRange(untitled-ontology-5:esHijoOHijaDe untitled-ontology-5:Progenitor)
+
+# Object Property: untitled-ontology-5:esMadreDe (untitled-ontology-5:esMadreDe)
+
+SubObjectPropertyOf(untitled-ontology-5:esMadreDe untitled-ontology-5:esAscendenteDe)
+ObjectPropertyDomain(untitled-ontology-5:esMadreDe ObjectIntersectionOf(untitled-ontology-5:Antecesor ObjectHasValue(untitled-ontology-5:tieneSexo untitled-ontology-5:Mujer)))
+ObjectPropertyRange(untitled-ontology-5:esMadreDe untitled-ontology-5:Persona)
+
+# Object Property: untitled-ontology-5:esPadreDe (untitled-ontology-5:esPadreDe)
+
+SubObjectPropertyOf(untitled-ontology-5:esPadreDe untitled-ontology-5:esAscendenteDe)
+ObjectPropertyDomain(untitled-ontology-5:esPadreDe ObjectIntersectionOf(untitled-ontology-5:Antecesor ObjectHasValue(untitled-ontology-5:tieneSexo untitled-ontology-5:Hombre)))
+ObjectPropertyRange(untitled-ontology-5:esPadreDe untitled-ontology-5:Persona)
+
+# Object Property: untitled-ontology-5:esParejaDe (untitled-ontology-5:esParejaDe)
+
+SymmetricObjectProperty(untitled-ontology-5:esParejaDe)
+ObjectPropertyDomain(untitled-ontology-5:esParejaDe untitled-ontology-5:Persona)
+ObjectPropertyRange(untitled-ontology-5:esParejaDe untitled-ontology-5:Persona)
+
+# Object Property: untitled-ontology-5:esProgenitorDe (untitled-ontology-5:esProgenitorDe)
+
+SubObjectPropertyOf(untitled-ontology-5:esProgenitorDe untitled-ontology-5:esAscendenteDe)
+ObjectPropertyDomain(untitled-ontology-5:esProgenitorDe untitled-ontology-5:Progenitor)
+ObjectPropertyRange(untitled-ontology-5:esProgenitorDe untitled-ontology-5:Persona)
+
+# Object Property: untitled-ontology-5:tieneSexo (untitled-ontology-5:tieneSexo)
+
+FunctionalObjectProperty(untitled-ontology-5:tieneSexo)
+ObjectPropertyDomain(untitled-ontology-5:tieneSexo untitled-ontology-5:Persona)
+ObjectPropertyRange(untitled-ontology-5:tieneSexo untitled-ontology-5:Sexo)
+
+
+############################
+#   Data Properties
+############################
+
+# Data Property: untitled-ontology-5:Edad (untitled-ontology-5:Edad)
+
+AnnotationAssertion(rdfs:comment untitled-ontology-5:Edad "Edad de una persona. Un numero entero")
+DataPropertyDomain(untitled-ontology-5:Edad untitled-ontology-5:Persona)
+DataPropertyRange(untitled-ontology-5:Edad xsd:integer)
+
+
+
+############################
+#   Classes
+############################
+
+# Class: untitled-ontology-5:Abuelos (untitled-ontology-5:Abuelos)
+
+EquivalentClasses(untitled-ontology-5:Abuelos ObjectIntersectionOf(untitled-ontology-5:Persona ObjectUnionOf(ObjectSomeValuesFrom(untitled-ontology-5:esAscendenteDe untitled-ontology-5:Madre) ObjectSomeValuesFrom(untitled-ontology-5:esAscendenteDe untitled-ontology-5:Padre))))
+SubClassOf(untitled-ontology-5:Abuelos untitled-ontology-5:Persona)
+
+# Class: untitled-ontology-5:Antecesor (untitled-ontology-5:Antecesor)
+
+SubClassOf(untitled-ontology-5:Antecesor untitled-ontology-5:Persona)
+
+# Class: untitled-ontology-5:FamiliaNumerosa (untitled-ontology-5:FamiliaNumerosa)
+
+EquivalentClasses(untitled-ontology-5:FamiliaNumerosa ObjectIntersectionOf(untitled-ontology-5:Persona ObjectUnionOf(ObjectMinCardinality(2 untitled-ontology-5:esHermanoDe untitled-ontology-5:Persona) ObjectMinCardinality(3 untitled-ontology-5:esProgenitorDe untitled-ontology-5:Persona))))
+SubClassOf(untitled-ontology-5:FamiliaNumerosa untitled-ontology-5:Persona)
+
+# Class: untitled-ontology-5:Madre (untitled-ontology-5:Madre)
+
+EquivalentClasses(untitled-ontology-5:Madre ObjectIntersectionOf(untitled-ontology-5:Persona ObjectSomeValuesFrom(untitled-ontology-5:esMadreDe untitled-ontology-5:Persona)))
+SubClassOf(untitled-ontology-5:Madre untitled-ontology-5:Antecesor)
+
+# Class: untitled-ontology-5:MayorDe65 (untitled-ontology-5:MayorDe65)
+
+EquivalentClasses(untitled-ontology-5:MayorDe65 ObjectIntersectionOf(untitled-ontology-5:Persona DataSomeValuesFrom(untitled-ontology-5:Edad DatatypeRestriction(xsd:integer xsd:minInclusive "65"^^xsd:integer))))
+SubClassOf(untitled-ontology-5:MayorDe65 untitled-ontology-5:Persona)
+
+# Class: untitled-ontology-5:MenorDeEdad (untitled-ontology-5:MenorDeEdad)
+
+EquivalentClasses(untitled-ontology-5:MenorDeEdad ObjectIntersectionOf(untitled-ontology-5:Persona DataSomeValuesFrom(untitled-ontology-5:Edad DatatypeRestriction(xsd:integer xsd:maxExclusive "18"^^xsd:integer))))
+SubClassOf(untitled-ontology-5:MenorDeEdad untitled-ontology-5:Persona)
+
+# Class: untitled-ontology-5:Padre (untitled-ontology-5:Padre)
+
+EquivalentClasses(untitled-ontology-5:Padre ObjectIntersectionOf(untitled-ontology-5:Persona ObjectSomeValuesFrom(untitled-ontology-5:esPadreDe untitled-ontology-5:Persona)))
+SubClassOf(untitled-ontology-5:Padre untitled-ontology-5:Antecesor)
+
+# Class: untitled-ontology-5:PersonaConPareja (untitled-ontology-5:PersonaConPareja)
+
+EquivalentClasses(untitled-ontology-5:PersonaConPareja ObjectIntersectionOf(untitled-ontology-5:Persona ObjectSomeValuesFrom(untitled-ontology-5:esParejaDe untitled-ontology-5:Persona)))
+SubClassOf(untitled-ontology-5:PersonaConPareja untitled-ontology-5:Persona)
+
+# Class: untitled-ontology-5:PersonaConParejaYDescendencia (untitled-ontology-5:PersonaConParejaYDescendencia)
+
+EquivalentClasses(untitled-ontology-5:PersonaConParejaYDescendencia ObjectIntersectionOf(untitled-ontology-5:Progenitor ObjectSomeValuesFrom(untitled-ontology-5:esParejaDe untitled-ontology-5:Persona)))
+SubClassOf(untitled-ontology-5:PersonaConParejaYDescendencia untitled-ontology-5:Persona)
+
+# Class: untitled-ontology-5:Progenitor (untitled-ontology-5:Progenitor)
+
+EquivalentClasses(untitled-ontology-5:Progenitor ObjectIntersectionOf(untitled-ontology-5:Persona ObjectUnionOf(untitled-ontology-5:Madre untitled-ontology-5:Padre)))
+SubClassOf(untitled-ontology-5:Progenitor untitled-ontology-5:Antecesor)
+
+# Class: untitled-ontology-5:Sexo (untitled-ontology-5:Sexo)
+
+EquivalentClasses(untitled-ontology-5:Sexo ObjectOneOf(untitled-ontology-5:Hombre untitled-ontology-5:Mujer))
+
+# Class: untitled-ontology-5:TieneDosHijos (untitled-ontology-5:TieneDosHijos)
+
+EquivalentClasses(untitled-ontology-5:TieneDosHijos ObjectExactCardinality(2 untitled-ontology-5:esProgenitorDe untitled-ontology-5:Persona))
+SubClassOf(untitled-ontology-5:TieneDosHijos untitled-ontology-5:Progenitor)
+
+# Class: untitled-ontology-5:Tios (untitled-ontology-5:Tios)
+
+EquivalentClasses(untitled-ontology-5:Tios ObjectIntersectionOf(untitled-ontology-5:Persona ObjectUnionOf(ObjectSomeValuesFrom(untitled-ontology-5:esHermanoDe untitled-ontology-5:Madre) ObjectSomeValuesFrom(untitled-ontology-5:esHermanoDe untitled-ontology-5:Padre))))
+SubClassOf(untitled-ontology-5:Tios untitled-ontology-5:Persona)
+
+
+############################
+#   Named Individuals
+############################
+
+# Individual: untitled-ontology-5:Eugenia (untitled-ontology-5:Eugenia)
+
+ClassAssertion(untitled-ontology-5:Progenitor untitled-ontology-5:Eugenia)
+ObjectPropertyAssertion(untitled-ontology-5:esParejaDe untitled-ontology-5:Eugenia untitled-ontology-5:Pedro)
+ObjectPropertyAssertion(untitled-ontology-5:esProgenitorDe untitled-ontology-5:Eugenia untitled-ontology-5:Lucia)
+ObjectPropertyAssertion(untitled-ontology-5:esProgenitorDe untitled-ontology-5:Eugenia untitled-ontology-5:Manuel)
+ObjectPropertyAssertion(untitled-ontology-5:tieneSexo untitled-ontology-5:Eugenia untitled-ontology-5:Mujer)
+DataPropertyAssertion(untitled-ontology-5:Edad untitled-ontology-5:Eugenia "72"^^xsd:decimal)
+
+# Individual: untitled-ontology-5:Hombre (untitled-ontology-5:Hombre)
+
+ClassAssertion(untitled-ontology-5:Sexo untitled-ontology-5:Hombre)
+
+# Individual: untitled-ontology-5:Juan (untitled-ontology-5:Juan)
+
+ClassAssertion(untitled-ontology-5:Progenitor untitled-ontology-5:Juan)
+ObjectPropertyAssertion(untitled-ontology-5:esParejaDe untitled-ontology-5:Juan untitled-ontology-5:Lucia)
+ObjectPropertyAssertion(untitled-ontology-5:esProgenitorDe untitled-ontology-5:Juan untitled-ontology-5:Luis)
+ObjectPropertyAssertion(untitled-ontology-5:esProgenitorDe untitled-ontology-5:Juan untitled-ontology-5:Maria)
+ObjectPropertyAssertion(untitled-ontology-5:esProgenitorDe untitled-ontology-5:Juan untitled-ontology-5:Sandra)
+ObjectPropertyAssertion(untitled-ontology-5:tieneSexo untitled-ontology-5:Juan untitled-ontology-5:Hombre)
+DataPropertyAssertion(untitled-ontology-5:Edad untitled-ontology-5:Juan "52"^^xsd:decimal)
+
+# Individual: untitled-ontology-5:Lucia (untitled-ontology-5:Lucia)
+
+ClassAssertion(untitled-ontology-5:Persona untitled-ontology-5:Lucia)
+ObjectPropertyAssertion(untitled-ontology-5:esHermanoDe untitled-ontology-5:Lucia untitled-ontology-5:Manuel)
+ObjectPropertyAssertion(untitled-ontology-5:esProgenitorDe untitled-ontology-5:Lucia untitled-ontology-5:Luis)
+ObjectPropertyAssertion(untitled-ontology-5:esProgenitorDe untitled-ontology-5:Lucia untitled-ontology-5:Maria)
+ObjectPropertyAssertion(untitled-ontology-5:esProgenitorDe untitled-ontology-5:Lucia untitled-ontology-5:Sandra)
+ObjectPropertyAssertion(untitled-ontology-5:tieneSexo untitled-ontology-5:Lucia untitled-ontology-5:Mujer)
+DataPropertyAssertion(untitled-ontology-5:Edad untitled-ontology-5:Lucia "49"^^xsd:decimal)
+
+# Individual: untitled-ontology-5:Luis (untitled-ontology-5:Luis)
+
+ClassAssertion(untitled-ontology-5:Persona untitled-ontology-5:Luis)
+ObjectPropertyAssertion(untitled-ontology-5:esHermanoDe untitled-ontology-5:Luis untitled-ontology-5:Sandra)
+ObjectPropertyAssertion(untitled-ontology-5:tieneSexo untitled-ontology-5:Luis untitled-ontology-5:Hombre)
+DataPropertyAssertion(untitled-ontology-5:Edad untitled-ontology-5:Luis "24"^^xsd:decimal)
+
+# Individual: untitled-ontology-5:Manuel (untitled-ontology-5:Manuel)
+
+ClassAssertion(untitled-ontology-5:Persona untitled-ontology-5:Manuel)
+ObjectPropertyAssertion(untitled-ontology-5:esHermanoDe untitled-ontology-5:Manuel untitled-ontology-5:Lucia)
+ObjectPropertyAssertion(untitled-ontology-5:tieneSexo untitled-ontology-5:Manuel untitled-ontology-5:Hombre)
+DataPropertyAssertion(untitled-ontology-5:Edad untitled-ontology-5:Manuel "47"^^xsd:decimal)
+
+# Individual: untitled-ontology-5:Maria (untitled-ontology-5:Maria)
+
+ClassAssertion(untitled-ontology-5:Persona untitled-ontology-5:Maria)
+ObjectPropertyAssertion(untitled-ontology-5:esHermanoDe untitled-ontology-5:Maria untitled-ontology-5:Luis)
+ObjectPropertyAssertion(untitled-ontology-5:tieneSexo untitled-ontology-5:Maria untitled-ontology-5:Mujer)
+DataPropertyAssertion(untitled-ontology-5:Edad untitled-ontology-5:Maria "17"^^xsd:decimal)
+
+# Individual: untitled-ontology-5:Mujer (untitled-ontology-5:Mujer)
+
+ClassAssertion(untitled-ontology-5:Sexo untitled-ontology-5:Mujer)
+
+# Individual: untitled-ontology-5:Pedro (untitled-ontology-5:Pedro)
+
+ClassAssertion(untitled-ontology-5:Progenitor untitled-ontology-5:Pedro)
+ObjectPropertyAssertion(untitled-ontology-5:esProgenitorDe untitled-ontology-5:Pedro untitled-ontology-5:Lucia)
+ObjectPropertyAssertion(untitled-ontology-5:esProgenitorDe untitled-ontology-5:Pedro untitled-ontology-5:Manuel)
+ObjectPropertyAssertion(untitled-ontology-5:tieneSexo untitled-ontology-5:Pedro untitled-ontology-5:Hombre)
+DataPropertyAssertion(untitled-ontology-5:Edad untitled-ontology-5:Pedro "75"^^xsd:decimal)
+
+# Individual: untitled-ontology-5:Sandra (untitled-ontology-5:Sandra)
+
+ClassAssertion(untitled-ontology-5:Persona untitled-ontology-5:Sandra)
+ObjectPropertyAssertion(untitled-ontology-5:esHermanoDe untitled-ontology-5:Sandra untitled-ontology-5:Maria)
+ObjectPropertyAssertion(untitled-ontology-5:tieneSexo untitled-ontology-5:Sandra untitled-ontology-5:Mujer)
+DataPropertyAssertion(untitled-ontology-5:Edad untitled-ontology-5:Sandra "16"^^xsd:decimal)
+
+
+DifferentIndividuals(untitled-ontology-5:Eugenia untitled-ontology-5:Juan untitled-ontology-5:Lucia untitled-ontology-5:Luis untitled-ontology-5:Maria untitled-ontology-5:Pedro untitled-ontology-5:Sandra)
+DifferentIndividuals(untitled-ontology-5:Hombre untitled-ontology-5:Mujer)
+)

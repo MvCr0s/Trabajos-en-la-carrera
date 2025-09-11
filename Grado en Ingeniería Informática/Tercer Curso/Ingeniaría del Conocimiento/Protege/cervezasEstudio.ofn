@@ -1,0 +1,218 @@
+Prefix(:=<http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42/>)
+Prefix(owl:=<http://www.w3.org/2002/07/owl#>)
+Prefix(rdf:=<http://www.w3.org/1999/02/22-rdf-syntax-ns#>)
+Prefix(xml:=<http://www.w3.org/XML/1998/namespace>)
+Prefix(xsd:=<http://www.w3.org/2001/XMLSchema#>)
+Prefix(rdfs:=<http://www.w3.org/2000/01/rdf-schema#>)
+
+
+Ontology(<http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42>
+
+Declaration(Class(<http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#Cerveza>))
+Declaration(Class(<http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#CervezaDeBajaGraduacion>))
+Declaration(Class(<http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#CervezaMahou>))
+Declaration(Class(<http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#Fabrica>))
+Declaration(Class(<http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#FabricaDeCervezaRubia>))
+Declaration(Class(<http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#Marca>))
+Declaration(Class(<http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#MarcaConAlMenos2CervezasDistintas>))
+Declaration(Class(<http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#Pais>))
+Declaration(Class(<http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#PaisFabricantesDeAlMenos2CervezasRubias>))
+Declaration(Class(<http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#TipoCerveza>))
+Declaration(ObjectProperty(<http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#cervezaQueFabrica>))
+Declaration(ObjectProperty(<http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#esDeLaMarca>))
+Declaration(ObjectProperty(<http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#esDelTipo>))
+Declaration(ObjectProperty(<http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#estaEnPais>))
+Declaration(ObjectProperty(<http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#seFabricaEn>))
+Declaration(ObjectProperty(<http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#tieneFabrica>))
+Declaration(ObjectProperty(<http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#tieneLaCerveza>))
+Declaration(DataProperty(<http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#tieneAlcohol>))
+Declaration(NamedIndividual(<http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#Alovera>))
+Declaration(NamedIndividual(<http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#Dublin>))
+Declaration(NamedIndividual(<http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#Espana>))
+Declaration(NamedIndividual(<http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#Guiness>))
+Declaration(NamedIndividual(<http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#Guinness_Stout>))
+Declaration(NamedIndividual(<http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#Irlanda>))
+Declaration(NamedIndividual(<http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#Mahou>))
+Declaration(NamedIndividual(<http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#Mahou_5_estrellas>))
+Declaration(NamedIndividual(<http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#Mahou_Clasica>))
+Declaration(NamedIndividual(<http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#Malaga>))
+Declaration(NamedIndividual(<http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#Milana>))
+Declaration(NamedIndividual(<http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#Milana_Tostada>))
+Declaration(NamedIndividual(<http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#MonteMayor>))
+Declaration(NamedIndividual(<http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#Negra>))
+Declaration(NamedIndividual(<http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#Rubia>))
+Declaration(NamedIndividual(<http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#Tostada>))
+############################
+#   Object Properties
+############################
+
+# Object Property: <http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#cervezaQueFabrica> (<http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#cervezaQueFabrica>)
+
+InverseObjectProperties(<http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#cervezaQueFabrica> <http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#seFabricaEn>)
+
+# Object Property: <http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#esDeLaMarca> (<http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#esDeLaMarca>)
+
+InverseObjectProperties(<http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#esDeLaMarca> <http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#tieneLaCerveza>)
+ObjectPropertyDomain(<http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#esDeLaMarca> <http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#Cerveza>)
+ObjectPropertyRange(<http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#esDeLaMarca> <http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#Marca>)
+
+# Object Property: <http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#esDelTipo> (<http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#esDelTipo>)
+
+ObjectPropertyDomain(<http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#esDelTipo> <http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#Cerveza>)
+ObjectPropertyRange(<http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#esDelTipo> <http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#TipoCerveza>)
+
+# Object Property: <http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#estaEnPais> (<http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#estaEnPais>)
+
+InverseObjectProperties(<http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#estaEnPais> <http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#tieneFabrica>)
+ObjectPropertyDomain(<http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#estaEnPais> <http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#Fabrica>)
+ObjectPropertyRange(<http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#estaEnPais> <http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#Pais>)
+
+# Object Property: <http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#seFabricaEn> (<http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#seFabricaEn>)
+
+ObjectPropertyDomain(<http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#seFabricaEn> <http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#Cerveza>)
+ObjectPropertyRange(<http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#seFabricaEn> <http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#Fabrica>)
+
+
+############################
+#   Data Properties
+############################
+
+# Data Property: <http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#tieneAlcohol> (<http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#tieneAlcohol>)
+
+DataPropertyRange(<http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#tieneAlcohol> xsd:double)
+
+
+
+############################
+#   Classes
+############################
+
+# Class: <http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#CervezaDeBajaGraduacion> (<http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#CervezaDeBajaGraduacion>)
+
+EquivalentClasses(<http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#CervezaDeBajaGraduacion> ObjectIntersectionOf(<http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#Cerveza> DataSomeValuesFrom(<http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#tieneAlcohol> DatatypeRestriction(xsd:double xsd:maxExclusive "5.0"^^xsd:double))))
+SubClassOf(<http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#CervezaDeBajaGraduacion> <http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#Cerveza>)
+
+# Class: <http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#CervezaMahou> (<http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#CervezaMahou>)
+
+EquivalentClasses(<http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#CervezaMahou> ObjectHasValue(<http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#esDeLaMarca> <http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#Mahou>))
+SubClassOf(<http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#CervezaMahou> <http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#Cerveza>)
+
+# Class: <http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#FabricaDeCervezaRubia> (<http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#FabricaDeCervezaRubia>)
+
+EquivalentClasses(<http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#FabricaDeCervezaRubia> ObjectIntersectionOf(<http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#Fabrica> ObjectSomeValuesFrom(<http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#cervezaQueFabrica> ObjectHasValue(<http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#esDelTipo> <http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#Rubia>))))
+SubClassOf(<http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#FabricaDeCervezaRubia> <http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#Fabrica>)
+
+# Class: <http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#MarcaConAlMenos2CervezasDistintas> (<http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#MarcaConAlMenos2CervezasDistintas>)
+
+EquivalentClasses(<http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#MarcaConAlMenos2CervezasDistintas> ObjectIntersectionOf(<http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#Marca> ObjectMinCardinality(2 <http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#tieneLaCerveza> <http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#Cerveza>)))
+SubClassOf(<http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#MarcaConAlMenos2CervezasDistintas> <http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#Marca>)
+
+# Class: <http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#PaisFabricantesDeAlMenos2CervezasRubias> (<http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#PaisFabricantesDeAlMenos2CervezasRubias>)
+
+EquivalentClasses(<http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#PaisFabricantesDeAlMenos2CervezasRubias> ObjectIntersectionOf(<http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#Pais> ObjectMinCardinality(2 <http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#tieneFabrica> <http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#FabricaDeCervezaRubia>)))
+SubClassOf(<http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#PaisFabricantesDeAlMenos2CervezasRubias> <http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#Pais>)
+
+# Class: <http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#TipoCerveza> (<http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#TipoCerveza>)
+
+EquivalentClasses(<http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#TipoCerveza> ObjectOneOf(<http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#Negra> <http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#Rubia> <http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#Tostada>))
+
+
+############################
+#   Named Individuals
+############################
+
+# Individual: <http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#Alovera> (<http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#Alovera>)
+
+ClassAssertion(<http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#Fabrica> <http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#Alovera>)
+ObjectPropertyAssertion(<http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#cervezaQueFabrica> <http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#Alovera> <http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#Mahou_5_estrellas>)
+ObjectPropertyAssertion(<http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#cervezaQueFabrica> <http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#Alovera> <http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#Mahou_Clasica>)
+ObjectPropertyAssertion(<http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#estaEnPais> <http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#Alovera> <http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#Espana>)
+
+# Individual: <http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#Dublin> (<http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#Dublin>)
+
+ClassAssertion(<http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#Fabrica> <http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#Dublin>)
+ObjectPropertyAssertion(<http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#cervezaQueFabrica> <http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#Dublin> <http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#Guinness_Stout>)
+ObjectPropertyAssertion(<http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#estaEnPais> <http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#Dublin> <http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#Irlanda>)
+
+# Individual: <http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#Espana> (<http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#Espana>)
+
+ClassAssertion(<http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#Pais> <http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#Espana>)
+
+# Individual: <http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#Guiness> (<http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#Guiness>)
+
+ClassAssertion(<http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#Marca> <http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#Guiness>)
+
+# Individual: <http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#Guinness_Stout> (<http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#Guinness_Stout>)
+
+ClassAssertion(<http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#Cerveza> <http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#Guinness_Stout>)
+ObjectPropertyAssertion(<http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#esDeLaMarca> <http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#Guinness_Stout> <http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#Guiness>)
+ObjectPropertyAssertion(<http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#esDelTipo> <http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#Guinness_Stout> <http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#Negra>)
+ObjectPropertyAssertion(<http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#seFabricaEn> <http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#Guinness_Stout> <http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#Dublin>)
+DataPropertyAssertion(<http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#tieneAlcohol> <http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#Guinness_Stout> "4.3"^^xsd:double)
+
+# Individual: <http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#Irlanda> (<http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#Irlanda>)
+
+ClassAssertion(<http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#Pais> <http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#Irlanda>)
+
+# Individual: <http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#Mahou> (<http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#Mahou>)
+
+ClassAssertion(<http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#Marca> <http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#Mahou>)
+
+# Individual: <http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#Mahou_5_estrellas> (<http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#Mahou_5_estrellas>)
+
+ClassAssertion(<http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#Cerveza> <http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#Mahou_5_estrellas>)
+ObjectPropertyAssertion(<http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#esDeLaMarca> <http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#Mahou_5_estrellas> <http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#Mahou>)
+ObjectPropertyAssertion(<http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#esDelTipo> <http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#Mahou_5_estrellas> <http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#Rubia>)
+ObjectPropertyAssertion(<http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#seFabricaEn> <http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#Mahou_5_estrellas> <http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#Alovera>)
+ObjectPropertyAssertion(<http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#seFabricaEn> <http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#Mahou_5_estrellas> <http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#Malaga>)
+DataPropertyAssertion(<http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#tieneAlcohol> <http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#Mahou_5_estrellas> "5.5"^^xsd:double)
+
+# Individual: <http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#Mahou_Clasica> (<http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#Mahou_Clasica>)
+
+ClassAssertion(<http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#Cerveza> <http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#Mahou_Clasica>)
+ObjectPropertyAssertion(<http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#esDeLaMarca> <http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#Mahou_Clasica> <http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#Mahou>)
+ObjectPropertyAssertion(<http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#esDelTipo> <http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#Mahou_Clasica> <http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#Rubia>)
+ObjectPropertyAssertion(<http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#seFabricaEn> <http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#Mahou_Clasica> <http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#Alovera>)
+DataPropertyAssertion(<http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#tieneAlcohol> <http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#Mahou_Clasica> "4.8"^^xsd:double)
+
+# Individual: <http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#Malaga> (<http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#Malaga>)
+
+ClassAssertion(<http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#Fabrica> <http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#Malaga>)
+ObjectPropertyAssertion(<http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#cervezaQueFabrica> <http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#Malaga> <http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#Mahou_5_estrellas>)
+ObjectPropertyAssertion(<http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#estaEnPais> <http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#Malaga> <http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#Espana>)
+
+# Individual: <http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#Milana> (<http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#Milana>)
+
+ClassAssertion(<http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#Marca> <http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#Milana>)
+
+# Individual: <http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#Milana_Tostada> (<http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#Milana_Tostada>)
+
+ClassAssertion(<http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#Cerveza> <http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#Milana_Tostada>)
+ObjectPropertyAssertion(<http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#esDeLaMarca> <http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#Milana_Tostada> <http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#Milana>)
+ObjectPropertyAssertion(<http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#esDelTipo> <http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#Milana_Tostada> <http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#Tostada>)
+ObjectPropertyAssertion(<http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#seFabricaEn> <http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#Milana_Tostada> <http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#MonteMayor>)
+DataPropertyAssertion(<http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#tieneAlcohol> <http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#Milana_Tostada> "5.8"^^xsd:double)
+
+# Individual: <http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#MonteMayor> (<http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#MonteMayor>)
+
+ClassAssertion(<http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#Fabrica> <http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#MonteMayor>)
+ObjectPropertyAssertion(<http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#cervezaQueFabrica> <http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#MonteMayor> <http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#Milana_Tostada>)
+ObjectPropertyAssertion(<http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#estaEnPais> <http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#MonteMayor> <http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#Espana>)
+
+# Individual: <http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#Negra> (<http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#Negra>)
+
+ClassAssertion(<http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#TipoCerveza> <http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#Negra>)
+
+# Individual: <http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#Rubia> (<http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#Rubia>)
+
+ClassAssertion(<http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#TipoCerveza> <http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#Rubia>)
+
+# Individual: <http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#Tostada> (<http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#Tostada>)
+
+ClassAssertion(<http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#TipoCerveza> <http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#Tostada>)
+
+
+DifferentIndividuals(<http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#Alovera> <http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#Dublin> <http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#Malaga> <http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#MonteMayor>)
+DifferentIndividuals(<http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#Espana> <http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#Irlanda>)
+DifferentIndividuals(<http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#Guinness_Stout> <http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#Mahou_5_estrellas> <http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#Mahou_Clasica> <http://www.semanticweb.org/dediego/ontologies/2025/1/untitled-ontology-42#Milana_Tostada>)
+)
